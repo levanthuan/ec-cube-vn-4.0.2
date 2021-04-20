@@ -1068,6 +1068,7 @@ admin.setting.shop.delivery_setting: Cài đặt giao hàng
 admin.setting.shop.tax_setting: Thuế (VAT)
 admin.setting.shop.mail_setting: Email
 admin.setting.shop.csv_setting: Thiết lập CSV
+admin.setting.shop.holiday_setting: Cài đặt ngày nghỉ
 admin.setting.system: Cài đặt hệ thống
 admin.setting.system.member_management: Người dùng
 admin.setting.system.member_password_change: Mật khẩu

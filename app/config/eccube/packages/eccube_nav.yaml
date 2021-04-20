@@ -118,6 +118,9 @@ parameters:
                         shop_csv:
                             name: admin.setting.shop.csv_setting
                             url: admin_setting_shop_csv
+                        shop_holiday:
+                            name: admin.setting.shop.holiday_setting
+                            url: admin_setting_shop_holiday
                 system:
                     name: admin.setting.system
                     children:
