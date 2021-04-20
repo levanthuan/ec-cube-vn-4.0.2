@@ -93,6 +93,19 @@ final class EccubeEvents
     const ADMIN_CONTENT_PAGE_DELETE_COMPLETE = 'admin.content.page.delete.complete';
 
     /**
+     * Admin/Content/BannerController
+     */
+    // index
+    const ADMIN_CONTENT_BANNER_INDEX_COMPLETE = 'admin.content.banner.index.initialize';
+
+    // edit
+    const ADMIN_CONTENT_BANNER_EDIT_INITIALIZE = 'admin.content.banner.edit.initialize';
+    const ADMIN_CONTENT_BANNER_EDIT_COMPLETE = 'admin.content.banner.edit.complete';
+
+    // delete
+    const ADMIN_CONTENT_BANNER_DELETE_COMPLETE = 'admin.content.banner.delete.complete';
+
+    /**
      * Admin/Customer/CustomerController
      */
     // index
@@ -344,6 +357,15 @@ final class EccubeEvents
     // editParameter
     const ADMIN_SETTING_SHOP_TAX_RULE_EDIT_PARAMETER_INITIALIZE = 'admin.setting.shop.tax.rule.edit.parameter.initialize';
     const ADMIN_SETTING_SHOP_TAX_RULE_EDIT_PARAMETER_COMPLETE = 'admin.setting.shop.tax.rule.edit.parameter.complete';
+
+    /**
+     * Admin/Setting/Shop/HolidayController
+     */
+    // index
+    const ADMIN_SETTING_SHOP_HOLIDAY_INDEX_COMPLETE = 'admin.setting.shop.holiday.index.initialize';
+    const ADMIN_SETTING_SHOP_HOLIDAY_EDIT_INITIALIZE = 'admin.setting.shop.holiday.edit.initialize';
+    const ADMIN_SETTING_SHOP_HOLIDAY_EDIT_COMPLETE = 'admin.setting.shop.holiday.edit.complete';
+    const ADMIN_SETTING_SHOP_HOLIDAY_DELETE_COMPLETE = 'admin.setting.shop.holiday.delete.complete';
 
     /**
      * Admin/Setting/System/AuthorityController

@@ -1,0 +1,40 @@
+
+{% set campaignBanners = repository('Eccube\\Entity\\Banner').getCampaignBanner() %}
+
+<div class="ec-headerNaviRole ">
+    <div class="ec-headerRole__navSP">
+        {{ include('Block/nav_sp.twig') }}
+        <div class="ec-headerContact sp_only">
+            {% for campaignBanner in campaignBanners %}
+                {% if campaignBanner.status %}
+                    <a style="visibility: hidden;" href="{{ campaignBanner.url }}"><img src="{{ asset(campaignBanner.image|no_image_product, 'save_banner') }}" alt="{{ campaignBanner.title }}"></a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="ec-headerNaviRole__left pc_only">
+		<div class="ec-headerRole__title">
+			<div class="ec-headerTitle">
+				<div class="ec-headerTitle__title">
+					<h1>
+                        <a href="{{ url('homepage') }}">
+                            <img src="{{ asset('assets/img/common/svg_logo.svg') }}" alt="Smooth EC" style="vertical-align: top;">
+                            {# SMOOTH <span>EC</span> #}
+                        </a>
+                    </h1>
+				</div>
+			</div>
+		</div>		
+    </div>
+	
+    <div class="ec-headerNaviRole__right ">
+        <div class="ec-headerNaviRole__nav">
+            {{ include('Block/login.twig') }}
+        </div>
+        <div class="ec-headerRole__cart">
+            {{ include('Block/cart.twig') }}
+        </div>
+
+    </div>
+	
+</div>

@@ -79,6 +79,12 @@ parameters:
                 maintenance:
                     name: admin.content.maintenance_management
                     url: admin_content_maintenance
+                top_content:
+                    name: admin.content.top_content
+                    children:
+                        banner:
+                            name: admin.content.banner_management
+                            url: admin_content_banner
         setting:
             name: admin.setting
             icon: fa-cog

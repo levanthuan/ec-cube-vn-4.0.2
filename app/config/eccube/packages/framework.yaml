@@ -30,6 +30,8 @@ framework:
           base_path: '/html/template/admin'
         save_image:
           base_path: '/html/upload/save_image'
+        save_banner:
+          base_path: '/html/upload/save_banner'
         plugin:
           base_path: '/html/plugin'
         install:

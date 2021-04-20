@@ -422,6 +422,8 @@ admin.common.bulk_registration: Đăng ký tất cả
 admin.common.decision: Chấp nhận
 admin.common.create: Tạo
 admin.common.create__new: Tạo mới
+admin.common.create__new_slider: Tạo mới Slide
+admin.common.create__new_header_sp: Tạo mới Banner SP
 admin.common.up: Di chuyển lên
 admin.common.down: Di chuyển xuống
 admin.common.upload: Tải lên
@@ -941,6 +943,8 @@ admin.content.news_management: Thông tin cập nhật
 admin.content.file_management: Các tập tin
 admin.content.layout_management: Bố cục
 admin.content.page_management: Trang
+admin.content.top_content: Nội dung trang top
+admin.content.banner_management: Quản lý Banner
 admin.content.css_management: Quản lý CSS
 admin.content.js_management: Quản lý Javascript
 admin.content.block_management: Khối
@@ -1042,6 +1046,10 @@ admin.content.maintenance_switch__on: Bật
 admin.content.maintenance_switch__off: Tắt
 admin.content.maintenance_switch__on_message: Chế độ bảo trì đã được kích hoạt.
 admin.content.maintenance_switch__off_message: Chế độ bảo trì đã bị vô hiệu hóa.
+admin.content.banner.image: Ảnh
+admin.content.banner.url: URL
+admin.content.banner.category: Loại Banner
+admin.content.banner.banner_registration: Đăng ký Banner
 
 #------------------------------------------------------------------------------------
 # Settings

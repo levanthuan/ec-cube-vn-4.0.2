@@ -1,0 +1,237 @@
+{#
+This file is part of EC-CUBE
+
+Copyright(c) EC-CUBE CO.,LTD. All Rights Reserved.
+
+http://www.ec-cube.co.jp/
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+#}
+{% extends '@admin/default_frame.twig' %}
+
+{% set menus = ['content', 'top_content', 'banner'] %}
+
+{% block title %}{{ 'admin.content.banner_management'|trans }}{% endblock %}
+{% block sub_title %}{{ 'admin.content.contents_management'|trans }}{% endblock %}
+
+{% block stylesheet %}
+    <style>
+        .image-display {
+            max-width: 200px;
+        }
+    </style>
+{% endblock stylesheet %}
+
+{% block main %}
+    <div class="c-contentsArea__cols">
+        <div class="c-contentsArea__primaryCol">
+            <div class="c-primaryCol">
+                <div class="row justify-content-between mb-2">
+                    <div class="col-9">
+                        <a class="btn btn-ec-regular" href="{{ url('admin_content_banner_new') }}?type=1">
+                            {{ 'admin.common.create__new_slider'|trans }}
+                        </a>
+                    </div>
+                </div>
+                <div class="card rounded border-0 mb-4">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-8"><span class="card-title">トップページスライダー</span></div>
+                        </div>
+                    </div>
+                    <div class="card-body p-3">
+                        <table class="table table-sm">
+                            <thead>
+                            <th class="border-0 pt-2 pb-2 pl-3">{{ 'admin.content.banner.image'|trans }}</th>
+                            <th class="border-0 pt-2 pb-2">タイトル</th>
+                            <th class="border-0 pt-2 pb-2">デバイス</th>
+                            <th class="border-0 pt-2 pb-2">{{ 'admin.content.banner.url'|trans }}</th>
+                            <th class="border-0 pt-2 pb-2">状態</th>
+                            <th class="border-0 pt-2 pb-2">表示順</th>
+                            <th class="border-0 pt-2 pb-2 pr-3"></th>
+                            </thead>
+                            <tbody>
+                            {% for Banner in BannerSliders %}
+                                <tr>
+                                    <td>
+                                        {% if Banner.image is not null %}
+                                            <img src="{{ url('homepage') }}html/upload/save_banner/{{ Banner.image }}" alt="{{ Banner.title }}" class="image-display">
+                                        {% else %}
+                                            <img src="{{ asset(''|no_image_product, 'save_image') }}" alt="あなたの 画像" class="image-display">
+                                        {% endif %}
+                                    </td>
+                                    <td style="vertical-align: middle;">
+                                        {{ Banner.title }}
+                                    </td>
+                                    <td style="vertical-align: middle;">
+                                        {{ Banner.device == 1 ? 'PC' : 'SP' }}
+                                    </td>
+                                    <td style="vertical-align: middle;">
+                                        {{ Banner.url }}
+                                    </td>
+                                    <td style="vertical-align: middle;">
+                                        {{ Banner.status == 0 ? 'オフ' : 'オン' }}
+                                    </td>
+                                    <td style="vertical-align: middle;">
+                                        {{ Banner.sort }}
+                                    </td>
+                                    <td style="vertical-align: middle; width: 100px;">
+                                        <div style="display: flex;">
+                                            <div class="text-center">
+                                                <a class="btn btn-ec-actionIcon"
+                                                   href="{{ path('admin_content_banner_edit', { 'id' : Banner.id}) }}"
+                                                   data-toggle="tooltip" data-placement="top"
+                                                   title="{{ 'admin.common.edit'|trans }}">
+                                                    <i class="fa fa-pencil fa-lg text-secondary"></i>
+                                                </a>
+                                            </div>
+                                            <div class="text-center" data-toggle="tooltip"
+                                                 data-placement="top" title="{{ 'admin.common.delete'|trans }}">
+                                                <a class="btn btn-ec-actionIcon" data-toggle="modal"
+                                                   data-target="#delete_{{ Banner.id }}">
+                                                    <i class="fa fa-close fa-lg text-secondary"
+                                                       aria-hidden="true"></i>
+                                                </a>
+                                                <div class="modal fade" id="delete_{{ Banner.id }}" tabindex="-1"
+                                                     role="dialog"
+                                                     aria-labelledby="delete_{{ Banner.id }}" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title font-weight-bold">{{ 'admin.common.delete_modal__title'|trans }}</h5>
+                                                                <button class="close" type="button"
+                                                                        data-dismiss="modal"
+                                                                        aria-label="Close"><span
+                                                                            aria-hidden="true">×</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body text-left">
+                                                                <p class="text-left">{{ 'admin.common.delete_modal__message'|trans({'%name%': Banner.id}) }}</p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button class="btn btn-ec-sub" type="button"
+                                                                        data-dismiss="modal">{{ 'admin.common.cancel'|trans }}</button>
+                                                                <a class="btn btn-ec-delete"
+                                                                   href="{{ url('admin_content_banner_delete', {id: Banner.id}) }}" {{ csrf_token_for_anchor() }}
+                                                                   data-method="delete"
+                                                                   data-confirm="false">{{ 'admin.common.delete'|trans }}</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                {% if BannerTopSPs|length < 2 %}
+                <div class="row justify-content-between mb-2">
+                    <div class="col-9">
+                        <a class="btn btn-ec-regular" href="{{ url('admin_content_banner_new') }}?type=2">
+                            {{ 'admin.common.create__new_header_sp'|trans }}
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
+                <div class="card rounded border-0 mb-4">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-8"><span class="card-title">ヘッダーSP</span></div>
+                        </div>
+                    </div>
+                    <div class="card-body p-3">
+                        <table class="table table-sm">
+                            <thead>
+                            <th class="border-0 pt-2 pb-2 pl-3">{{ 'admin.content.banner.image'|trans }}</th>
+                            <th class="border-0 pt-2 pb-2">タイトル</th>
+                            <th class="border-0 pt-2 pb-2">{{ 'admin.content.banner.url'|trans }}</th>
+                            <th class="border-0 pt-2 pb-2">状態</th>
+                            <th class="border-0 pt-2 pb-2">表示順</th>
+                            <th class="border-0 pt-2 pb-2 pr-3"></th>
+                            </thead>
+                            <tbody>
+                            {% for Banner in BannerTopSPs %}
+                                <tr>
+                                    <td>
+                                        {% if Banner.image is not null %}
+                                            <img src="{{ url('homepage') }}html/upload/save_banner/{{ Banner.image }}" alt="{{ Banner.title }}" class="image-display">
+                                        {% else %}
+                                            <img src="{{ asset(''|no_image_product, 'save_image') }}" alt="あなたの 画像" class="image-display">
+                                        {% endif %}
+                                    </td>
+                                    <td style="vertical-align: middle;">
+                                        {{ Banner.title }}
+                                    </td>
+                                    <td style="vertical-align: middle;">
+                                        {{ Banner.url }}
+                                    </td>
+                                    <td style="vertical-align: middle;">
+                                        {{ Banner.status == 0 ? 'オフ' : 'オン' }}
+                                    </td>
+                                    <td style="vertical-align: middle;">
+                                        {{ Banner.sort }}
+                                    </td>
+                                    <td style="vertical-align: middle; width: 100px;">
+                                        <div style="display: flex;">
+                                            <div class="text-center">
+                                                <a class="btn btn-ec-actionIcon"
+                                                   href="{{ path('admin_content_banner_edit', { 'id' : Banner.id}) }}"
+                                                   data-toggle="tooltip" data-placement="top"
+                                                   title="{{ 'admin.common.edit'|trans }}">
+                                                    <i class="fa fa-pencil fa-lg text-secondary"></i>
+                                                </a>
+                                            </div>
+                                            <div class="text-center" data-toggle="tooltip"
+                                                 data-placement="top" title="{{ 'admin.common.delete'|trans }}" style="display: none">
+                                                <a class="btn btn-ec-actionIcon" data-toggle="modal"
+                                                   data-target="#delete_{{ Banner.id }}">
+                                                    <i class="fa fa-close fa-lg text-secondary"
+                                                       aria-hidden="true"></i>
+                                                </a>
+                                                <div class="modal fade" id="delete_{{ Banner.id }}" tabindex="-1"
+                                                     role="dialog"
+                                                     aria-labelledby="delete_{{ Banner.id }}" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title font-weight-bold">{{ 'admin.common.delete_modal__title'|trans }}</h5>
+                                                                <button class="close" type="button"
+                                                                        data-dismiss="modal"
+                                                                        aria-label="Close"><span
+                                                                            aria-hidden="true">×</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body text-left">
+                                                                <p class="text-left">{{ 'admin.common.delete_modal__message'|trans({'%name%': Banner.id}) }}</p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button class="btn btn-ec-sub" type="button"
+                                                                        data-dismiss="modal">{{ 'admin.common.cancel'|trans }}</button>
+                                                                <a class="btn btn-ec-delete"
+                                                                   href="{{ url('admin_content_banner_delete', {id: Banner.id}) }}" {{ csrf_token_for_anchor() }}
+                                                                   data-method="delete"
+                                                                   data-confirm="false">{{ 'admin.common.delete'|trans }}</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

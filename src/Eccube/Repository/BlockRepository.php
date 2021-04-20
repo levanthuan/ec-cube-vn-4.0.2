@@ -95,4 +95,52 @@ class BlockRepository extends AbstractRepository
 
         return $UnusedBlocks;
     }
+
+    public function checkDevice()
+    {
+        if(isset($_SERVER)){
+            $u_agent = $_SERVER['HTTP_USER_AGENT'];
+        }else{
+            $u_agent ='Unknown';
+        }
+        $bname = 'Unknown';
+        // Next get the name of the useragent yes seperately and for good reason
+        if(preg_match('/MSIE/i',$u_agent) && !preg_match('/Opera/i',$u_agent)){
+            $bname = 'Internet Explorer';
+            $ub = "MSIE";
+        }elseif(preg_match('/Firefox/i',$u_agent)){
+            $bname = 'Mozilla Firefox';
+            $ub = "Firefox";
+        }elseif(preg_match('/OPR/i',$u_agent)){
+            $bname = 'Opera';
+            $ub = "Opera";
+        }elseif(preg_match('/Chrome/i',$u_agent) && !preg_match('/Edge/i',$u_agent)){
+            $bname = 'Google Chrome';
+            $ub = "Chrome";
+        }elseif(preg_match('/Safari/i',$u_agent) && !preg_match('/Edge/i',$u_agent)){
+            $bname = 'Apple Safari';
+            $ub = "Safari";
+        }elseif(preg_match('/Netscape/i',$u_agent)){
+            $bname = 'Netscape';
+            $ub = "Netscape";
+        }elseif(preg_match('/Edge/i',$u_agent)){
+            $bname = 'Edge';
+            $ub = "Edge";
+        }elseif(preg_match('/Trident/i',$u_agent)){
+            $bname = 'Internet Explorer';
+            $ub = "MSIE";
+        }
+
+        if (strpos($bname, 'Internet') !== false) {
+            return  true;
+        }
+        return  false;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isMobile() {
+        return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
+    }
 }

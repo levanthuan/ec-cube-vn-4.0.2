@@ -1,0 +1,38 @@
+
+{% set Categories = repository('Eccube\\Entity\\Category').getList() %}
+
+{% macro tree(Category) %}
+    {% from _self import tree %}
+    <a href="{{ url('product_list') }}?category_id={{ Category.id }}">
+        {{ Category.name }}
+    </a>
+    {% if Category.children|length > 0 %}
+        <ul class="child">
+      
+            {% for ChildCategory in Category.children %}
+                <li>
+                    {{ tree(ChildCategory) }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endmacro %}
+
+{% from _self import tree %}
+
+<div class="ec-categoryNaviRole only-pc">
+    <div class="ec-itemNav">
+        <ul class="ec-itemNav__nav">
+            <li><a href="/">ホーム<span>home</span></a></li>
+            <li><a href="{{ url('product_list') }}">商品一覧<span>products</span></a></li>
+            <li><a href="{{ url('homepage') }}guide">ご利用ガイド<span>guide</span></a></li>
+            <li><a href="{{ url('homepage') }}help/company">会社概要<span>company</span></a></li>
+            <li><a href="{{ url('homepage') }}contact">お問合せ<span>contact</span></a></li>
+            {# {% for Category in Categories %}
+                <li>
+                    {{ tree(Category) }}
+                </li>
+            {% endfor %} #}
+        </ul>
+    </div>
+</div>

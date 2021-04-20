@@ -1,0 +1,35 @@
+
+{% set product_recommends = repository('Eccube\\Entity\\Product').getLatestProducts %}
+
+<div class="ec-newItemRole base-border">
+    <div class="ec-role">
+        <div class="ec-secHeading">
+            <span class="ec-secHeading__ja">{{ '最新の製品'|trans }}</span>
+        </div>
+        <div class="ec-newItemRole__list">
+            {% for Product in product_recommends %}
+                <div class="ec-newItemRole__listItem">
+                    <a href="{{ url('product_detail', {'id': Product.id}) }}">
+                        <img src="{{ asset(Product.mainFileName|no_image_product, "save_image") }}">
+                        <p class="ec-newItemRole__listItemTitle">{{ Product.name }}<br></p>
+
+                        <p class="price02-default" style="padding: 0 15px 15px 15px; color: #343C43">
+                            {% if Product.hasProductClass %}
+                                {% if Product.getPrice02Min == Product.getPrice02Max %}
+                                    {{ Product.getPrice02IncTaxMin|price }}
+                                {% else %}
+                                    {{ Product.getPrice02IncTaxMin|price }} ～ {{ Product.getPrice02IncTaxMax|price }}
+                                {% endif %}
+                            {% else %}
+                                {{ Product.getPrice02IncTaxMin|price }}
+                            {% endif %}<span>(税込)</span>
+                        </p>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="ec-btn-top-wrap">
+            <a href="{{ url('product_list') }}?category_id=1" class="ec-btn-top">もっと見る</a>
+        </div>
+    </div>
+</div>
