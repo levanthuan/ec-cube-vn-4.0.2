@@ -1,0 +1,53 @@
+{#
+ * This file is part of the Recommend Product plugin
+ *
+Copyright(c) EC-CUBE CO.,LTD. All Rights Reserved.
+
+http://www.ec-cube.co.jp/
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+#}
+{% set product_recommend03s = repository('Eccube\\Entity\\ProductRecommend03').getProductRecommend %}
+{% set isMobile = repository('Eccube\\Entity\\Block').isMobile() %}
+
+<!-- ▼item_list▼ -->
+<div class="ec-newItemRole ec-recommendProduct base-border">
+    <div class="ec-role">
+        <div class="ec-secHeading">
+            <span class="ec-secHeading__ja">{{ '商品一覧'|trans }}</span>
+            <span class="ec-secHeading__en">products</span>
+        </div>
+        <div class="ec-newItemRole__list">
+            {% for RecommendProduct in product_recommend03s %}
+                <div class="ec-newItemRole__listItem">
+                    <a href="{{ url('product_detail', {'id': RecommendProduct.Product.id}) }}">
+                        <div class="home-thumb">
+                            <span class="helper"></span>
+                            <img src="{{ asset(RecommendProduct.Product.mainFileName|no_image_product, "save_image") }}">
+                        </div>
+                        <p class="ec-newItemRole__listItemTitle">{{ RecommendProduct.Product.name }}</p>
+                        {% set Product = RecommendProduct.Product %}
+                        <p class="price02-default" >
+                            {% if Product.hasProductClass %}
+                                {% if Product.getPrice02Min == Product.getPrice02Max %}
+                                    {{ Product.getPrice02Min|price }} ({{ Product.getPrice02IncTaxMin|price }} <span>税込</span>)
+                                {% else %}
+                                    {{ Product.getPrice02Min|price }} ～ {{ Product.getPrice02Max|price }} ({{ Product.getPrice02IncTaxMin|price }} ～ {{ Product.getPrice02IncTaxMax|price }} <span>税込</span>)
+                                {% endif %}
+                            {% else %}
+                                {{ Product.getPrice02Min|price }} ({{ Product.getPrice02IncTaxMin|price }} <span>税込</span>)
+                            {% endif %}
+                        </p>
+                    </a>
+                </div>
+                {# {% if (isMobile and RecommendProduct.device_sp) or (isMobile == false and RecommendProduct.device_pc) %}
+                {% endif %} #}
+            {% endfor %}
+        </div>
+        <div class="ec-btn-top-wrap">
+            <a href="{{ url('product_list') }}" class="button">もっと見る</a>
+        </div>
+    </div>
+</div>
+<!-- ▲item_list▲ -->

@@ -337,4 +337,15 @@ class ProductRepository extends AbstractRepository
 
         return $this->queries->customize(QueryKey::PRODUCT_SEARCH_ADMIN, $qb, $searchData);
     }
+
+    public function getLatestProducts()
+    {
+        $qb = $this->createQueryBuilder('p')
+            ->andWhere('p.Status = 1');
+        $qb
+            ->orderBy('p.create_date', 'DESC')
+            ->setMaxResults(4);
+
+        return $qb->getQuery()->getResult();
+    }
 }

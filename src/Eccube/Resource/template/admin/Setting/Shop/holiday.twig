@@ -1,0 +1,142 @@
+{#
+This file is part of EC-CUBE
+
+Copyright(c) EC-CUBE CO.,LTD. All Rights Reserved.
+
+http://www.ec-cube.co.jp/
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+#}
+{% extends '@admin/default_frame.twig' %}
+
+{% set menus = ['setting', 'shop', 'shop_holiday'] %}
+
+{% block title %}{{ 'admin.setting.shop.holiday_setting'|trans }}{% endblock %}
+{% block sub_title %}{{ 'admin.setting.shop'|trans }}{% endblock %}
+
+{% block stylesheet %}
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+	<style type="text/css">
+		table.dataTable.no-footer {
+			border-bottom: 1px solid #ccc !important;
+		}
+	</style>
+{% endblock stylesheet %}
+
+{% block javascript %}
+	<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function(){
+		    $('#datatable').DataTable({
+		        "language": {
+					"sProcessing":   "処理中...",
+					"sLengthMenu":   "_MENU_ 件表示",
+					"sZeroRecords":  "データはありません。",
+					"sInfo":         " _TOTAL_ 件中 _START_ から _END_ まで表示",
+					"sInfoEmpty":    " 0 件中 0 から 0 まで表示",
+					"sInfoFiltered": "（全 _MAX_ 件より抽出）",
+					"sInfoPostFix":  "",
+					"sSearch":       "検索:",
+					"sUrl":          "",
+					"oPaginate": {
+						"sFirst":    "先頭",
+						"sPrevious": "前",
+						"sNext":     "次",
+						"sLast":     "最終"
+					}
+				}
+		    });
+		} );
+    </script>
+{% endblock javascript %}
+
+{% block main %}
+	{{ form_widget(form._token) }}
+    <div class="c-contentsArea__cols">
+        <div class="c-contentsArea__primaryCol">
+            <div class="c-primaryCol">
+            		<div class="d-block mb-3">
+                        <a class="btn btn-ec-regular" href="{{ url('admin_setting_shop_holiday_new') }}">{{ 'admin.common.create__new'|trans }}</a>
+                    </div>
+                {% if Holidays|length > 0 %}
+                <div class="card rounded border-0 mb-4">
+                    <div class="card-body p-3">
+                        <table class="table table-sm" id="datatable">
+                            <thead>
+                            <th class="border-0 pt-2 pb-2">{{ 'admin.common.id'|trans }}</th>
+                            <th class="border-0 pt-2 pb-2">祝日</th>
+                            <th class="border-0 pt-2 pb-2">祝日の名前</th>
+                            <th class="border-0 pt-2 pb-2"></th>
+                            </thead>
+                            <tbody>
+                            {% for Holiday in Holidays %}
+                                <tr>
+                                    <td style="vertical-align: middle;">
+                                        {{ Holiday.id }}
+                                    </td>
+                                    <td style="vertical-align: middle;">
+                                        {{ Holiday.date|date("Y-m-d") }}
+                                    </td>
+                                    <td style="vertical-align: middle;">
+                                        {{ Holiday.name }}
+                                    </td>
+                                    <td style="vertical-align: middle; width: 100px;">
+                                        <div style="display: flex;">
+                                        	<div class="text-center">
+                                                <a class="btn btn-ec-actionIcon"
+                                                   href="{{ path('admin_setting_shop_holiday_edit', { 'id' : Holiday.id}) }}"
+                                                   data-toggle="tooltip" data-placement="top"
+                                                   title="{{ 'admin.common.edit'|trans }}">
+                                                    <i class="fa fa-pencil fa-lg text-secondary"></i>
+                                                </a>
+                                            </div>
+                                            <div class="text-center" data-toggle="tooltip"
+                                                 data-placement="top" title="{{ 'admin.common.delete'|trans }}">
+                                                <a class="btn btn-ec-actionIcon" data-toggle="modal"
+                                                   data-target="#delete_{{ Holiday.id }}">
+                                                    <i class="fa fa-close fa-lg text-secondary"
+                                                       aria-hidden="true"></i>
+                                                </a>
+                                                <div class="modal fade" id="delete_{{ Holiday.id }}" tabindex="-1"
+                                                     role="dialog"
+                                                     aria-labelledby="delete_{{ Holiday.id }}" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title font-weight-bold">{{ 'admin.common.delete_modal__title'|trans }}</h5>
+                                                                <button class="close" type="button"
+                                                                        data-dismiss="modal"
+                                                                        aria-label="Close"><span
+                                                                            aria-hidden="true">×</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body text-left">
+                                                                <p class="text-left">{{ 'admin.common.delete_modal__message'|trans({'%name%': Holiday.id}) }}</p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button class="btn btn-ec-sub" type="button"
+                                                                        data-dismiss="modal">{{ 'admin.common.cancel'|trans }}</button>
+                                                                <a class="btn btn-ec-delete"
+                                                                   href="{{ url('admin_setting_shop_holiday_delete', {id: Holiday.id}) }}" {{ csrf_token_for_anchor() }}
+                                                                   data-method="delete"
+                                                                   data-confirm="false">{{ 'admin.common.delete'|trans }}</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

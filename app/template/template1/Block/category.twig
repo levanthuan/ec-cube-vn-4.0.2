@@ -1,0 +1,53 @@
+{% set Categories = repository('Eccube\\Entity\\Category').getList() %}
+
+<div class="ec-categoryRole white">
+    <div class="ec-role">
+        <div class="box-category">
+            <div class="ec-secHeading">
+                <span class="ec-secHeading__ja">{{ '商品カテゴリー'|trans }}</span>
+                <span class="ec-secHeading__en">category</span>
+            </div>
+            <div class="ec-categoryRole__list">
+                <div class="ec-categoryRole__listItem">
+                    <a href="{{ url('product_list') }}?category_id=1">
+                        <img src="{{ asset('assets/img/top/img_category_01.jpg') }}" alt="">
+                        <p class="name">布団・寝具</p>
+                    </a>
+                </div>
+                <div class="ec-categoryRole__listItem">
+                    <a href="{{ url('product_list') }}?category_id=2">
+                        <img src="{{ asset('assets/img/top/img_category_02.jpg') }}" alt="">
+                        <p class="name">タオル・タオルケット</p>
+                    </a>
+                </div>
+                <div class="ec-categoryRole__listItem">
+                    <a href="{{ url('product_list') }}?category_id=5">
+                        <img src="{{ asset('assets/img/top/img_category_03.jpg') }}" alt="">
+                        <p class="name">わた・丹前綿・真綿</p>
+                    </a>
+                </div>
+                <div class="ec-categoryRole__listItem">
+                    <a href="{{ url('product_list') }}?category_id=7">
+                        <img src="{{ asset('assets/img/top/img_category_04.jpg') }}" alt="">
+                        <p class="name">健康肌着</p>
+                    </a>
+                </div>
+                <div class="ec-categoryRole__listItem">
+                    <a href="{{ url('product_list') }}?category_id=8">
+                        <img src="{{ asset('assets/img/top/img_category_05.jpg') }}" alt="">
+                        <p class="name">その他</p>
+                    </a>
+                </div>
+                {#% for Category in Categories %}
+                <div class="ec-categoryRole__listItem">
+                    <a href="{{ url('product_list') }}?category_id={{Category.id}}">
+                        <img src="{{ asset('assets/img/dummy/square3.jpg') }}" alt="">
+                        <p class="name">{{ Category.name }}</p>
+                    </a>
+                </div>
+                {% endfor %#}
+            </div>
+
+        </div>
+    </div>
+</div>

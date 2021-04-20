@@ -1,0 +1,69 @@
+
+{% block stylesheet %}
+<style>
+#customer_rank {
+  margin-bottom: 50px;
+}
+
+#customer_rank .heading02 {
+  background: #f8f8f8;
+  padding: 16px;
+  font-size: 24px;
+  text-align: center;
+}
+
+#customer_rank .current-rank {
+  font-size: 22px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: bold
+}
+
+#customer_rank span {
+  color: #c0392b;
+  font-weight: bold;
+}
+
+#customer_rank .rank {
+  color: #2981ba;
+  font-weight: bold;
+}
+
+#customer_rank .next_info {
+  background: #f7f7f9;
+  padding: 10px 25px;
+  border: 1px solid #e1e1e8;
+}
+</style>
+{% endblock stylesheet %}
+
+{% if CurrentCustomerRank or CheckCustomerRank or NextCustomerRank%}
+<div id="customer_rank" style="{{ CurrentCustomerRank.id == 2 ? 'display: none;' : '' }}">
+  <div class="ec-role">
+    <!-- <h2 class="heading02">会員ランク情報</h2> -->
+    <div class="container-fluid">
+      {% if CurrentCustomerRank %}
+      <p class="current-rank">あなたは<span class="rank">{{ CurrentCustomerRank.name }}</span>会員です。</p>
+      {% endif %}
+      {% if CheckCustomerRank %}
+          <p class="next_info" style="display: none;">次回更新時のランクは「<span class="rank">{{ CheckCustomerRank.name }}</span>」です。</p>
+      {% endif %}
+      {% if NextCustomerRank and NextCustomerRank.condAmount %}
+      <div class="next_info" style="display: none;">
+          {% set nextAmount = NextCustomerRank.condAmount - CurrentCondition.total_amount %}
+          {% if nextAmount > 0 %}
+              <p>あと <span>{{ nextAmount|number_format() }}円</span></p>
+          {% endif %}
+          {% set nextBuytimes = NextCustomerRank.condBuytimes - CurrentCondition.total_buytimes %}
+          {% if nextBuytimes > 0 %}
+              <p>あと <span>{{ nextBuytimes|number_format() }}回</span></p>
+          {% endif %}
+          {% if nextAmount > 0 or nextBuytimes > 0 %}
+              <p>ご購入頂くと「<span class="rank">{{ NextCustomerRank.name }}</span>」にランクアップします。</p>
+          {% endif %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endif %}

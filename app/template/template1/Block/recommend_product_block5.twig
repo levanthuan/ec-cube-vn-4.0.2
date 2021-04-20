@@ -1,0 +1,38 @@
+{% set product_recommend05s = repository('Eccube\\Entity\\ProductRecommend05').getProductRecommend %}
+{% set isMobile = repository('Eccube\\Entity\\Block').isMobile() %}
+
+<div class="ec-newItemRole base-border">
+    <div class="ec-role">
+        <div class="ec-secHeading">
+            <span class="ec-secHeading__ja"><i class='bx bx-rocket'></i>{{ 'おすすめ商品2'|trans }}</span>
+        </div>
+        <div class="ec-newItemRole__list">
+        	{% for ProductRecommend in product_recommend05s %}
+                {% if (isMobile and ProductRecommend.device_sp) or (isMobile == false and ProductRecommend.device_pc) %}
+                <div class="ec-newItemRole__listItem">
+                    <a href="{{ url('product_detail', {'id': ProductRecommend.Product.id}) }}">
+                        <img src="{{ asset(ProductRecommend.Product.mainFileName|no_image_product, "save_image") }}">
+                        <p class="ec-newItemRole__listItemTitle">{{ ProductRecommend.Product.name }}</p>
+
+                        {% set Product = ProductRecommend.Product %}
+                        <p class="price02-default" style="padding: 0 15px 15px 15px; color: #343C43">
+                            {% if Product.hasProductClass %}
+                                {% if Product.getPrice02Min == Product.getPrice02Max %}
+                                    {{ Product.getPrice02Min|price }} ({{ Product.getPrice02IncTaxMin|price }} <span>税込</span>)
+                                {% else %}
+                                    {{ Product.getPrice02Min|price }} ～ {{ Product.getPrice02Max|price }} ({{ Product.getPrice02IncTaxMin|price }} ～ {{ Product.getPrice02IncTaxMax|price }} <span>税込</span>)
+                                {% endif %}
+                            {% else %}
+                                {{ Product.getPrice02Min|price }} ({{ Product.getPrice02IncTaxMin|price }} <span>税込</span>)
+                            {% endif %}
+                        </p>
+                    </a>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="ec-btn-top-wrap">
+            <a href="{{ url('product_list') }}?category_id=1" class="ec-btn-top">もっと見る</a>
+        </div>
+    </div>
+</div>
