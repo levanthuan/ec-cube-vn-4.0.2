@@ -1,0 +1,40 @@
+{% set product_recommend02s = repository('Eccube\\Entity\\ProductRecommend02').getProductRecommend %}
+{% set isMobile = repository('Eccube\\Entity\\Block').isMobile() %}
+
+<div class="ec-newItemRole base-border item-recommend">
+    <div class="ec-role">
+        <div class="ec-secHeading">
+            <span class="ec-secHeading__ja tt_recommend">{{ 'おすすめ商品'|trans }}</span>
+            <span class="ec-secHeading__en">-Recommended-</span>
+        </div>
+        {% for ProductRecommend in product_recommend02s %}
+            {% if (isMobile and ProductRecommend.device_sp) or (isMobile == false and ProductRecommend.device_pc) %}
+                {% if loop.index == 1 %}
+                    <div class="ec-newItemRole__twocolumn">
+                        <div class="left">
+                            <img src="{{ asset(ProductRecommend.Product.mainFileName|no_image_product, "save_image") }}">
+                        </div>
+                        <div class="right">
+                            <h3>{{ ProductRecommend.Product.name }}</h3>
+                            <p>{{ProductRecommend.getComment()}}</p>
+                            <a href="{{ url('product_detail', {'id': ProductRecommend.Product.id}) }}" class="ec-btn-top">詳しくはこちら <i class='bx bxs-right-arrow-alt'></i></a>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+        <div class="ec-newItemRole__list">
+            {% for ProductRecommend in product_recommend02s %}
+                {% if (isMobile and ProductRecommend.device_sp) or (isMobile == false and ProductRecommend.device_pc) %}
+                    {% if loop.index != 1 %}
+                    <div class="ec-newItemRole__listItem">
+                            <a href="{{ url('product_detail', {'id': ProductRecommend.Product.id}) }}">
+                                <img src="{{ asset(ProductRecommend.Product.mainFileName|no_image_product, "save_image") }}">
+                            </a>
+                    </div>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>

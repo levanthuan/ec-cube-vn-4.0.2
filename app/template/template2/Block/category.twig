@@ -1,0 +1,44 @@
+{% set Categories = repository('Eccube\\Entity\\Category').getList() %}
+
+<div class="ec-categoryRole white">
+    <div class="ec-role">
+        <div class="ec-secHeading">
+                <span class="ec-secHeading__ja tt_category">{{ '商品カテゴリー'|trans }}</span>
+                <span class="ec-secHeading__en">-category-</span>
+            </div>
+        <div class="ec-categoryRole__list">
+            {#% for Category in Categories %}
+            <div class="ec-categoryRole__listItem">
+                <a href="{{ url('product_list') }}?category_id={{Category.id}}">
+                    <img src="{{ asset('assets/img/dummy/square3.jpg') }}" alt="">
+                    <p class="name">{{ Category.name }}</p>
+                </a>
+            </div>
+            {% endfor %#}
+            <div class="ec-categoryRole__listItem">
+                <a href="https://www.ssfoods-shop.jp/products/list?category_id=8">
+                    <img src="{{ asset('assets/img/top/31493350_XL@2x.jpg') }}" alt="">
+                    <p class="name">コロッケ <i class='bx bxs-right-arrow-alt'></i></p>
+                </a>
+            </div>
+            <div class="ec-categoryRole__listItem">
+                <a href="https://www.ssfoods-shop.jp/products/list?category_id=11">
+                    <img src="{{ asset('assets/img/top/17614128_XL@2x.jpg') }}" alt="">
+                    <p class="name">いももち <i class='bx bxs-right-arrow-alt'></i></p>
+                </a>
+            </div>
+            <div class="ec-categoryRole__listItem">
+                <a href="https://www.ssfoods-shop.jp/products/list?category_id=9">
+                    <img src="{{ asset('assets/img/top/27575465_XL@2x.jpg') }}" alt="">
+                    <p class="name">グラタン <i class='bx bxs-right-arrow-alt'></i></p>
+                </a>
+            </div>
+            <div class="ec-categoryRole__listItem">
+                <a href="https://www.ssfoods-shop.jp/products/list?category_id=10">
+                    <img src="{{ asset('assets/img/top/35679274_XL@2x.jpg') }}" alt="">
+                    <p class="name">その他 <i class='bx bxs-right-arrow-alt'></i></p>
+                </a>
+            </div>
+        </div>        
+    </div>
+</div>

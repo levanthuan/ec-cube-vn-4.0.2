@@ -1,0 +1,60 @@
+{% extends 'default_frame.twig' %}
+
+{% set mypageno = 'rank' %}
+
+{% set body_class = 'mypage' %}
+
+{% block main %}
+    <div class="ec-layoutRole__main">
+        <div class="ec-mypageRole">
+            <div class="ec-pageHeader">
+                <h1>{{ 'マイページ'|trans }}/{{ '会員ランク情報'|trans }}</h1>
+            </div>
+            {% include 'Mypage/navi.twig' %}
+        </div>
+        <div class="ec-mypageRole">
+            <div class="c100 p{{ percentNextRank }} circle-per">
+                <div class="text">
+                    {% if NextCustomerRank %}
+                    <span class="">
+                    	{% set nextAmount = NextCustomerRank.condAmount - CurrentCondition.total_amount %}
+                    	{% set nextBuytimes = NextCustomerRank.condBuytimes - CurrentCondition.total_buytimes %}
+                    	
+                        {% if nextAmount > 0 or nextBuytimes > 0 %}
+                            <p><span class="rank">{{ NextCustomerRank.name }}</span>会員まで</p>
+                        {% else %}
+                            <span>現在のランクは<br>「{{ CurrentCustomerRank.name }}」です。</span>
+                        {% endif %}
+
+                        {% if nextAmount > 0 %}
+                            <p class="money"><small>¥</small>{{ nextAmount|number_format() }}</p>
+                        {% endif %}
+                        
+                        {% if nextBuytimes > 0 %}
+                            <p>あと <span>{{ nextBuytimes|number_format() }}回</span></p>
+                        {% endif %}
+                    </span>
+                    {% elseif CurrentCustomerRank %}
+                        <span>現在のランクは<br>「{{ CurrentCustomerRank.name }}」です。</span>
+                    {% endif %}
+                </div>
+                <div class="slice">
+                    <div class="bar"></div>
+                    <div class="fill"></div>
+                </div>
+            </div>
+            <div class="rank-txt clearfix">
+                <div class="username">
+                    <span>{{ Customer.name01 }} {{ Customer.name02 }} 様</span>
+                    <span>{{ Customer.point }} point</span>
+                </div>
+                {% if CurrentCustomerRank %}
+                <div class="rank">
+                    <span>Rank</span>
+                    <span>現在のランクは「{{ CurrentCustomerRank.name }}」です。</span>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
