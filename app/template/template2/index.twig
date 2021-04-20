@@ -1,0 +1,273 @@
+{% extends 'default_frame.twig' %}
+
+{% set body_class = 'front_page' %}
+
+{% block stylesheet %}
+    <style>
+
+    </style>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+    $(function() {
+        var $topSlide = $('.only-pc #top-slide ul');
+        $topSlide.slick({
+            asNavFor: '.only-pc .thumb-slide ul',
+            infinite: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            centerMode: true,
+            centerPadding: 0,
+            variableWidth: true,
+            autoplay: true,
+            arrows: false,
+            responsive: [
+                {
+                    breakpoint: 641,
+                    settings: {
+                        arrows: false,
+                        dots: false,
+                        centerMode: false,
+                        slidesToShow: 1
+                    }
+                }
+            ]
+        });
+
+        var $thumbSlide = $('.only-pc .thumb-slide ul');
+        $thumbSlide.slick({
+            // infinite: true,
+            autoplay: false,
+            asNavFor: '.only-pc #top-slide ul',
+            arrows: false,
+            slidesToShow: 4,
+            slidesToScroll: 4,
+            focusOnSelect: true
+        });
+
+        var $topSlide_sp = $('.only-sp #top-slide ul');
+        $topSlide_sp.slick({
+            asNavFor: '.only-sp .thumb-slide ul',
+            infinite: true,
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            centerMode: true,
+            centerPadding: 0,
+            variableWidth: true,
+            autoplay: true,
+            arrows: false,
+            responsive: [
+                {
+                    breakpoint: 641,
+                    settings: {
+                        arrows: false,
+                        dots: false,
+                        centerMode: false,
+                        slidesToShow: 1
+                    }
+                }
+            ]
+        });
+
+        var $thumbSlide_sp = $('.only-sp .thumb-slide ul');
+        $thumbSlide_sp.slick({
+            // infinite: true,
+            autoplay: false,
+            asNavFor: '.only-sp #top-slide ul',
+            arrows: false,
+            slidesToShow: 4,
+            slidesToScroll: 4,
+            focusOnSelect: true
+        });
+    });
+    </script>
+{% endblock javascript %}
+
+{% set headerBannerPCs = repository('Eccube\\Entity\\Banner').getHeaderBannerPC() %}
+{% set headerBannerSPs = repository('Eccube\\Entity\\Banner').getHeaderBannerSP() %}
+
+{% block main %}
+    <section class="main-slider only-pc">
+        <div id="top-slide">
+            <ul>
+                {% for headerBannerPC in headerBannerPCs %}
+                    {% if headerBannerPC.url %}
+                        <li><a href="{{ headerBannerPC.url }}"><img src="{{ asset(headerBannerPC.image|no_image_product, 'save_banner') }}"></a></li>
+                    {% else %}
+                        <li><img src="{{ asset(headerBannerPC.image|no_image_product, 'save_banner') }}"></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="thumb-slide">
+            <div class="ec-role">
+                <ul>
+                    {% for headerBannerPC in headerBannerPCs %}
+                        {% if headerBannerPC.url %}
+                            <li><a href="{{ headerBannerPC.url }}"><img src="{{ asset(headerBannerPC.image|no_image_product, 'save_banner') }}"></a></li>
+                        {% else %}
+                            <li><img src="{{ asset(headerBannerPC.image|no_image_product, 'save_banner') }}"></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="main-slider only-sp">
+        <div id="top-slide">
+            <ul>
+                {% for headerBannerSP in headerBannerSPs %}
+                    {% if headerBannerSP.url %}
+                        <li><a href="{{ headerBannerSP.url }}"><img src="{{ asset(headerBannerSP.image|no_image_product, 'save_banner') }}"></a></li>
+                    {% else %}
+                        <li><img src="{{ asset(headerBannerSP.image|no_image_product, 'save_banner') }}"></li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="thumb-slide">
+            <div class="ec-role">
+                <ul>
+                    {% for headerBannerSP in headerBannerSPs %}
+                        {% if headerBannerSP.url %}
+                            <li><a href="{{ headerBannerSP.url }}"><img src="{{ asset(headerBannerSP.image|no_image_product, 'save_banner') }}"></a></li>
+                        {% else %}
+                            <li><img src="{{ asset(headerBannerSP.image|no_image_product, 'save_banner') }}"></li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{#% extends 'default_frame.twig' %}
+
+{% set body_class = 'front_page' %}
+
+{% block stylesheet %}
+    <style>
+        .slick-slider {
+            margin-bottom: 30px;
+        }
+
+        .slick-dots {
+            bottom: 0;
+            display: block;
+            width: 100%;
+            padding: 0;
+            list-style: none;
+            text-align: center;
+        }
+
+        .slick-dots li {
+            position: relative;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin: 0 5px;
+            padding: 0;
+
+            cursor: pointer;
+        }
+
+        .slick-dots li button {
+            font-size: 0;
+            line-height: 0;
+            display: block;
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            color: transparent;
+            border: 0;
+            outline: none;
+            background: transparent;
+        }
+
+        .slick-dots li button:hover,
+        .slick-dots li button:focus {
+            outline: none;
+        }
+
+        .slick-dots li button:hover:before,
+        .slick-dots li button:focus:before {
+            opacity: 1;
+        }
+
+        .slick-dots li button:before {
+            content: " ";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 16px;
+            height: 16px;
+            background-color: transparent!important;
+            border: 1px solid #878585;
+            text-align: center;
+            background-color: black;
+            border-radius: 50%;
+            -moz-border-radius: 50%;
+            -webkit-border-radius: 50%;
+            -ms-border-radius: 50%;
+
+        }
+
+        .slick-dots li.slick-active button:before {
+            background-color: #878585!important;
+        }
+        .slick-dots li:hover button:before {
+            background-color: #878585!important;
+        }
+
+        .slick-dots li button.thumbnail img {
+            width: 0;
+            height: 0;
+        }
+    </style>
+{% endblock %}
+
+{% block javascript %}
+    <script>
+        $(function() {
+            $('.main_visual').slick({
+                dots: true,
+                arrows: false,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                speed: 500,
+                fade: true,
+                cssEase: 'linear'
+            });
+        });
+    </script>
+{% endblock javascript %}
+
+{% set headerBannerPCs = repository('Eccube\\Entity\\Banner').getHeaderBannerPC() %}
+{% set headerBannerSPs = repository('Eccube\\Entity\\Banner').getHeaderBannerSP() %}
+
+{% block main %}
+    <div class="ec-sliderRole pc_only">
+        <div class="main_visual">
+            {% for headerBannerPC in headerBannerPCs %}
+                {% if headerBannerPC.url %}
+                    <div class="item slick-slide"><a href="{{ headerBannerPC.url }}"><img src="{{ asset(headerBannerPC.image|no_image_product, 'save_banner') }}"></a></div>
+                {% else %}
+                    <div class="item slick-slide"><img src="{{ asset(headerBannerPC.image|no_image_product, 'save_banner') }}"></div>
+        	    {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="ec-sliderRole sp_only">
+        <div class="main_visual">
+            {% for headerBannerSP in headerBannerSPs %}
+                {% if headerBannerSP.url %}
+                    <div class="item slick-slide"><a href="{{ headerBannerSP.url }}"><img src="{{ asset(headerBannerSP.image|no_image_product, 'save_banner') }}"></a></div>
+                {% else %}
+                    <div class="item slick-slide"><img src="{{ asset(headerBannerSP.image|no_image_product, 'save_banner') }}"></div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %#}

@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="{{ eccube_config.locale }}">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# product: http://ogp.me/ns/product#">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no,user-scalable=no">
+    <meta name="eccube-csrf-token" content="{{ csrf_token(constant('Eccube\\Common\\Constant::TOKEN_NAME')) }}">
+
+    {% if title is defined and title is not empty and title == 'TOPページ' %}
+        <title>北海道の「美味しい」をお届け！！｜新サカイヤフーズ-オンラインショップ</title>
+    {% else %}
+        <title>{% if subtitle is defined and subtitle is not empty %}{{ subtitle }} / {% elseif title is defined and title is not empty %}{% if title != 'TOPページ' %}{{ title }} / {% endif %}{% endif %}{{ BaseInfo.shop_name }}</title>
+    {% endif %}
+
+    
+    {% if app.request.get('pageno') >= 2 %}
+    <meta name="robots" content="noindex" />
+    {% endif %}
+    <meta name="robots" content="noindex, nofollow" />
+    {% if Page.author is not empty %}
+        <meta name="author" content="{{ Page.author }}">
+    {% endif %}
+
+    {% if title is defined and title is not empty and title == 'TOPページ' %}
+        <meta name="description" content="コロッケを中心とした冷凍食品の製造販売しています。北海道の美味しさにこだわった極上品をお届けいたします。WEBなら24時間いつでも受付ております。">
+    {% else %}
+        {% if Page.description is not empty %}
+            <meta name="description" content="{{ Page.description }}">
+        {% else %}
+            <meta name="description" content="コロッケを中心とした冷凍食品の製造販売しています。北海道の美味しさにこだわった極上品をお届けいたします。WEBなら24時間いつでも受付ております。">
+        {% endif %}
+    {% endif %}
+
+    {% if Page.keyword is not empty %}
+        <meta name="keywords" content="{{ Page.keyword }}">
+    {% endif %}
+    {% if Page.meta_robots is not empty %}
+        <meta name="robots" content="{{ Page.meta_robots }}">
+    {% endif %}
+    {% if Page.meta_tags is not empty %}
+        {{ include(template_from_string(Page.meta_tags)) }}
+    {% endif %}
+    <link rel="icon shortcut" href="{{ asset('assets/img/common/favicon.ico') }}">
+    <link rel="apple-touch-icon-precomposed" href="{{ asset('assets/img/common/apple-touch-icon.png') }}">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/jquery.slick/1.6.0/slick.css">
+    <link rel="stylesheet" href="{{ asset('boxicons/css/boxicons.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    
+    <meta property="og:url" content="{{ app.request.uri }}" />
+    <meta property="og:type"               content="website" />
+    {% if title is defined and title is not empty and title == 'TOPページ' %}
+        <meta property="og:title"              content="北海道の「美味しい」をお届け！！｜新サカイヤフーズ-オンラインショップ" />
+    {% else %}
+        <meta property="og:title"              content="{% if subtitle is defined and subtitle is not empty %}{{ subtitle }} / {% elseif title is defined and title is not empty %}{% if title != 'TOPページ' %}{{ title }} / {% endif %}{% endif %}{{ BaseInfo.shop_name }}" />
+    {% endif %}
+    {% if title is defined and title is not empty and title == 'TOPページ' %}
+        <meta property="og:description"        content="コロッケを中心とした冷凍食品の製造販売しています。北海道の美味しさにこだわった極上品をお届けいたします。WEBなら24時間いつでも受付ております。" />
+    {% else %}
+        {% if Page.description is not empty %}
+            <meta property="og:description"        content="{{ Page.description }}" />
+        {% else %}
+            <meta property="og:description"        content="コロッケを中心とした冷凍食品の製造販売しています。北海道の美味しさにこだわった極上品をお届けいたします。WEBなら24時間いつでも受付ております。" />
+        {% endif %}
+    {% endif %}
+    <meta property="og:image"              content="{{ asset('assets/img/common/ogp.png') }}" />
+
+    <meta name="twitter:card" content="summary" />
+    {% if title is defined and title is not empty and title == 'TOPページ' %}
+        <meta property="twitter:title"              content="北海道の「美味しい」をお届け！！｜新サカイヤフーズ-オンラインショップ" />
+    {% else %}
+        <meta property="twitter:title"              content="{% if subtitle is defined and subtitle is not empty %}{{ subtitle }} / {% elseif title is defined and title is not empty %}{% if title != 'TOPページ' %}{{ title }} / {% endif %}{% endif %}{{ BaseInfo.shop_name }}" />
+    {% endif %}
+
+    {% if title is defined and title is not empty and title == 'TOPページ' %}
+        <meta name="twitter:description" content="コロッケを中心とした冷凍食品の製造販売しています。北海道の美味しさにこだわった極上品をお届けいたします。WEBなら24時間いつでも受付ております。" />
+    {% else %}
+        {% if Page.description is not empty %}
+            <meta name="twitter:description" content="{{ Page.description }}" />
+        {% else %}
+            <meta name="twitter:description" content="コロッケを中心とした冷凍食品の製造販売しています。北海道の美味しさにこだわった極上品をお届けいたします。WEBなら24時間いつでも受付ております。" />
+        {% endif %}
+    {% endif %}
+    <meta name="twitter:image" content="{{ asset('assets/img/common/ogp.png') }}" />
+
+    {% block stylesheet %}{% endblock %}
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script>
+        $(function() {
+            $.ajaxSetup({
+                'headers': {
+                    'ECCUBE-CSRF-TOKEN': $('meta[name="eccube-csrf-token"]').attr('content')
+                }
+            });
+        });
+    </script>
+    <script>
+        jQuery( function( $ ) {
+            // setViewport
+            spView = 'width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0';
+            tbView = 'width=1200px,maximum-scale=2.0,user-scalable=1';
+
+            if (navigator.userAgent.indexOf('iPhone') > 0 || navigator.userAgent.indexOf('iPod') > 0 || (navigator.userAgent.indexOf('Android') > 0 && navigator.userAgent.indexOf('Mobile') > 0)) {
+                $('head').prepend('<meta name="viewport" content="' + spView + '" id="viewport">');
+            } else if (navigator.userAgent.indexOf('iPad') > 0 || (navigator.userAgent.indexOf('Android') > 0 && navigator.userAgent.indexOf('Mobile') == -1) || navigator.userAgent.indexOf('A1_07') > 0 || navigator.userAgent.indexOf('SC-01C') > 0) {
+                $('head').prepend('<meta name="viewport" content="' + tbView + '" id="viewport">');
+                $('.site-header .container').css({
+                    'paddingRight': '15px',
+                    'paddingLeft': '15px',
+                });
+            }
+
+            // iPhone6 Plus Landscape Viewport
+            if (navigator.userAgent.indexOf('iPhone') > 0) {
+                if (window.devicePixelRatio == 3) {
+                    if (window.orientation == 0) {
+                        $('#viewport').attr('content', spView);
+                    } else {
+                        $('#viewport').attr('content', tbView);
+                    }
+
+                    window.onorientationchange = setView;
+
+                    function setView() {
+                        setTimeout(function () {
+                            location.reload();
+                            return false;
+                        }, 500);
+                    }
+                }
+            }
+        });
+    </script>
+  
+    {% if Layout.Head %}
+        {{ include('block.twig', {'Blocks': Layout.Head}) }}
+    {% endif %}
+   
+    {% if plugin_assets is defined %}{{ include('@admin/snippet.twig', { snippets: plugin_assets }) }}{% endif %}
+    {{ include('design.twig', {'BaseInfo': BaseInfo}) }}
+	<link rel="stylesheet" href="{{ asset('assets/css/customize.css', 'user_data') }}">
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-K7LN36K');</script>
+    <!-- End Google Tag Manager -->
+</head>
+<body id="page_{{ app.request.get('_route') }}" class="{{ body_class|default('other_page') }}">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K7LN36K"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+{% if Layout.BodyAfter %}
+    {{ include('block.twig', {'Blocks': Layout.BodyAfter}) }}
+{% endif %}
+
+<div class="ec-layoutRole">
+   
+    <div class="ec-layoutRole__topBar">
+        {# <div class="ec-role"><strong>全品10％OFF</strong> 期間限定セール開催中！2020年10月31日(水)まで</div> #}
+    </div>
+    {% if Layout.Header %}
+        <div class="ec-layoutRole__header">
+            {{ include('block.twig', {'Blocks': Layout.Header}) }}
+        </div>
+    {% endif %}
+
+    {% if Layout.ContentsTop %}
+        <div class="ec-layoutRole__contentTop">
+            {{ include('block.twig', {'Blocks': Layout.ContentsTop}) }}
+        </div>
+    {% endif %}
+
+    {% set checkDevice = repository('Eccube\\Entity\\Block').checkDevice() %}
+    {% if checkDevice %}
+    <div class="ec-layoutRole__contents">
+    <div class='ec-layoutRole__main'>
+    <div class='ec-layoutRole__mainBottom'>
+    <div class="ec-role">
+    <div class="ec-newsRole" style='padding-bottom:0px'>
+       <div style='background-color:#f8f8f5; border:2px solid #e0e0e0; width:100%;     padding: 22px;   border-radius: 8px; '>
+                <span style='color:#e2574c;padding:25px; padding-left:10px;   font-weight: bold;  font-size: 18px;' >
+                <img style='border: 0px;width:30px; margin-right: 20px;' src=' data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACMAAAAjCAYAAAAe2bNZAAADfUlEQVRYhb3YW4hWVRQH8N+cRoyhu1kRTZSaE2NaVnSxpy4zYPeYLIp66CWyh3zQLpZRNhMRhoGRFfVSEAgFBaWUoxhFhhQYznQRmu6iZUMNEcVol4f9HWd/Z775zj49fH84sNfae629zll7r73/p+37m69WERejB+dgDk5AB/7EfnyFIQzi/SqO2xKDOQ534g7MreD/G7yCF7C3bHCW4HCF8LZPVAwETscjNfuHyga3N+k7BRtwSYO+b/EhdmKfkKLDcSLOxiKcEY3vwAD6cAt2VwnmAmzG0QX9a1iP95q8RI5FWIrbIt1CYT0txtaiQaM0nY8dhUB21JzflBgIbMftOBfbIv00bMFlZcHMxAcF3VpchI8SgyhiZ23igYJ+K2Y1C+ZdIfc5HsDyksnm4kp0l4x7WEhbjMGpglkm5DTHOjxZMsGNwmLciM+Erd8Mz+PRSJ6F/lzI60wHxkws6C+Uvykh95dH8hAWJNhtF4pnjuMxmn+Ze9TvrL4Eh/B7QR5LtFtSkFcykaZlUcdbwpdJwcESeSrswcuRvBRZJmzlk6KOfq1BPE8HejJcGyn34uMWBTOCLyP5mkz9DhrUWmyK2vMz9YXnkxYH82nU7syEwy3Hzy0OZn/UPiZTX3H/anEw8XzTMoxHiukVnR1ZkI+qaB/PdzDDT5FiZkVnPxbkHyrax/P91i5cDc+sKRZOHt8U9+MwdOFr4VZYBWdF7T3twopeXFP0VnQ2qvxwbIarovZwhrcjRae0g66Itv9h06n+y2zMhBN0NFKuquDwCLwpbNHNAotIxcqoPY538oPy2ahjCU5LdNiP6zBD4FLrEu1m4K5IfgkH8mDW4t+o8/VEp3MKclei3Qb1qR1g4goxpp7XnIfHE5yuxj+RfF+CzXJcEclPqxG8IqPcrZ6o3Y3nSpzPxoXYheGSsbfi1Ujeh5PVslLkTb0CQcuxXihMjzWZYKT2lGEF1jSY79DyKLKD70zmM6sF1jAvYcJGmI03GgRyg3BnPoRGJG6bsDP+jnS9QgpelF6l5+EZIfXXF/r6hJJQh2Z/IbqFVT+/Qd8ugVkOmcy1u3GpwCSLGBG4dsPbZDPi/7lQjQeEMygeu0D1Sv0UHsSBqQak/BJZJdSTNRL+sRTwi1AIu3Bvs0BI/1mUY7pA2nqE9J2KY2v6cfwqXCuGBYK3BX+kOv8PolOu4j3cic8AAAAASUVORK5CYII='>あなたがお使いのブラウザーでは正常に動作しません。
+                </span><br>
+                    <span style='color: #000000; padding-bottom:25px; padding-left:60px; font-size: 14px;'>
+                    あなたが今お使いのInternet Explorerは、動作に問題が起こったり、レイアウトが崩れたりします。</span><br>
+                    <span style='color: #000000; padding-bottom:25px; padding-left:60px; font-size: 14px;'>
+                    <a href='https://www.google.com/chrome/' target='_blank'><span style='color:blue;  text-decoration: underline;'>Google Chrome</span></a>など、より新しいブラウザーをご利用ください。</span>
+        </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    {% endif %}
+
+    <div class="ec-layoutRole__contents">
+       
+        {% if Layout.SideLeft %}
+            <div class="ec-layoutRole__left">
+                {{ include('block.twig', {'Blocks': Layout.SideLeft}) }}
+            </div>
+        {% endif %}
+
+        {% set layoutRoleMain = 'ec-layoutRole__main' %}
+        {% if Layout.ColumnNum == 2 %}
+            {% set layoutRoleMain = 'ec-layoutRole__mainWithColumn' %}
+        {% elseif Layout.ColumnNum == 3 %}
+            {% set layoutRoleMain = 'ec-layoutRole__mainBetweenColumn' %}
+        {% endif %}
+
+        <div class="{{ layoutRoleMain }}">
+          
+            {% if Layout.MainTop %}
+                <div class="ec-layoutRole__mainTop">
+                    {{ include('block.twig', {'Blocks': Layout.MainTop}) }}
+                </div>
+            {% endif %}
+
+         
+            {% block main %}{% endblock %}
+
+       
+            {% if Layout.MainBottom %}
+                <div class="ec-layoutRole__mainBottom">
+                    {{ include('block.twig', {'Blocks': Layout.MainBottom}) }}
+                </div>
+            {% endif %}
+        </div>
+
+        {% if Layout.SideRight %}
+            <div class="ec-layoutRole__right">
+                {{ include('block.twig', {'Blocks': Layout.SideRight}) }}
+            </div>
+        {% endif %}
+    </div>
+
+    {% if Layout.ContentsBottom %}
+        <div class="ec-layoutRole__contentBottom">
+            {{ include('block.twig', {'Blocks': Layout.ContentsBottom}) }}
+        </div>
+    {% endif %}
+
+    {% if Layout.Footer %}
+        <div class="ec-layoutRole__footer">
+            {{ include('block.twig', {'Blocks': Layout.Footer}) }}
+        </div>
+    {% endif %}
+</div>
+
+<div class="ec-overlayRole"></div>
+<div class="ec-drawerRoleClose"><i class="fas fa-times"></i></div>
+<div class="ec-drawerRole">
+    {% if Layout.Drawer %}
+        {{ include('block.twig', {'Blocks': Layout.Drawer}) }}
+    {% endif %}
+</div>
+<div class="ec-blockTopBtn pagetop"><i class='bx bx-up-arrow-circle'></i></div>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/jquery.slick/1.6.0/slick.min.js"></script>
+{% include('@common/lang.twig') %}
+<script src="{{ asset('assets/js/function.js') }}"></script>
+<script src="{{ asset('assets/js/eccube.js') }}"></script>
+
+{% block javascript %}{% endblock %}
+
+{% if Layout.CloseBodyBefore %}
+    {{ include('block.twig', {'Blocks': Layout.CloseBodyBefore}) }}
+{% endif %}
+
+{% if plugin_snippets is defined %}
+    {{ include('snippet.twig', { snippets: plugin_snippets }) }}
+{% endif %}
+<script src="{{ asset('assets/js/customize.js', 'user_data') }}"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+{#
+This file is part of EC-CUBE
+
+Copyright(c) EC-CUBE CO.,LTD. All Rights Reserved.
+
+http://www.ec-cube.co.jp/
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+#}
+{% extends 'default_frame.twig' %}
+
+{% block main %}
+
+    <div class="ec-role">
+        <div class="ec-faqRole">
+            <h2>よくある質問</h2>
+
+            {% for Faq_Category in Faq_Categories %}
+            <div class="ec-secHeading" style="margin-top: 32px">
+                <span class="ec-secHeading__ja">{{ Faq_Category.title }}</span>
+            </div>
+            <div class="ec-faqRole__faq ">
+                
+                {% for Faq in Faq_Category.Faqs %}
+                <div class="item">
+                    <div class="question">
+                        <span class="li-icon"><img src="{{ asset('assets/img/icon/icon_q.svg') }}"></span>
+                        <span class="li-text">{{ Faq.question|raw|nl2br }}</span>
+                    </div>
+                    <div class="answer" style='align-items: flex-start;'>
+                        <span class="li-icon"><img src="{{ asset('assets/img/icon/icon_a.svg') }}"></span>
+                        <span class="li-text">{{ Faq.answer|raw|nl2br }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+                
+            </div>
+            {% endfor %}
+
+            {% if Faqs|length > 0 %}
+            <div class="ec-secHeading" style="margin-top: 35px">
+                <span class="ec-secHeading__ja"></span>
+            </div>
+            <div class="ec-faqRole__faq ">
+                
+                {% for Faq in Faqs %}
+                <div class="item">
+                    <div class="question">
+                        <span class="li-icon"><img src="{{ asset('assets/img/icon/icon_q.svg') }}"></span>
+                        <span class="li-text">{{ Faq.question|raw|nl2br }}</span>
+                    </div>
+                    <div class="answer" style='align-items: flex-start;'>
+                        <span class="li-icon"><img src="{{ asset('assets/img/icon/icon_a.svg') }}"></span>
+                        <span class="li-text">{{ Faq.answer|raw|nl2br }}</span>
+                    </div>
+                </div>
+                {% endfor %}
+                
+            </div>
+            {% endif %}
+
+        </div>
+    </div>
+
+{% endblock %}

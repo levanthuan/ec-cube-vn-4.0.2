@@ -1,0 +1,55 @@
+{% set product_recommends = repository('Eccube\\Entity\\ProductRecommend').getProductRecommend %}
+{% set isMobile = repository('Eccube\\Entity\\Block').isMobile() %}
+
+<div class="ec-newItemRole item-features">
+    <div class="ec-role">
+        <div class="ec-secHeading">
+            <span class="ec-secHeading__ja tt_features">{{ '商品へのこだわり'|trans }}</span>
+            <span class="ec-secHeading__en">-features-</span>
+        </div>
+        <div class="ec-newItemRole__list">
+            {#% for ProductRecommend in product_recommends %}
+                {% if (isMobile and ProductRecommend.device_sp) or (isMobile == false and ProductRecommend.device_pc) %}
+                <div class="ec-newItemRole__listItem">
+                    <a href="{{ url('product_detail', {'id': ProductRecommend.Product.id}) }}">
+                        <img src="{{ asset(ProductRecommend.Product.mainFileName|no_image_product, "save_image") }}">
+                        <p class="ec-newItemRole__listItemTitle">{{ ProductRecommend.Product.name }}<br></p>
+						<p>{{ProductRecommend.getComment()}}</p>
+                    </a>
+                </div>
+                {% endif %}
+            {% endfor %#}
+            <div class="ec-newItemRole__listItem">
+                 <span>
+                 	<img src="{{ asset('assets/img/top/img_features01@2x.jpg') }}">
+                    <p class="ec-newItemRole__listItemTitle">今金男爵いも</p>
+                    <p>北海道を代表する最高ブランド今金男爵いもを使用しています。</p>
+                 </span>
+            </div>
+            <div class="ec-newItemRole__listItem">
+                <span>
+                    <img src="{{ asset('assets/img/top/img_features02@2x.jpg') }}">
+                    <p class="ec-newItemRole__listItemTitle">新鮮な牛乳</p>
+                    <p>北海道酪農発祥地八雲の新鮮な牛乳</p>
+                </span>
+            </div>
+            <div class="ec-newItemRole__listItem">
+                <span>
+                    <img src="{{ asset('assets/img/top/img_features03@2x.jpg') }}">
+                    <p class="ec-newItemRole__listItemTitle">採りたてコーン</p>
+                    <p>八雲産、朝もぎ取り採り甘くて風味の強いコーン</p>
+                </span>
+            </div>
+            <div class="ec-newItemRole__listItem">
+                <span>
+                    <img src="{{ asset('assets/img/top/img_features04@2x.jpg') }}">
+                    <p class="ec-newItemRole__listItemTitle">濃厚な南瓜</p>
+                    <p>北海道特選素材、森町みよい農園産JAS承認有機。栽培くりりん南瓜。甘い濃厚な味わいの南瓜。</p>
+                </span>
+            </div>
+        </div>
+        <div class="ec-btn-top-wrap">
+	        <a href="https://www.ssfoods-shop.jp/features" class="ec-btn-top">詳しくはこちら <i class='bx bxs-right-arrow-alt'></i></a>
+	    </div>
+    </div>
+</div>

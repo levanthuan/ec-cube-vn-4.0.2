@@ -1,0 +1,56 @@
+{% autoescape false %}
+{{ Order.name01 }} {{ Order.name02 }} 様
+
+お客さまがご注文された以下の商品を発送いたしました。商品の到着まで、今しばらくお待ちください。
+
+{% if Shipping.tracking_number %}
+お問い合わせ番号：{{ Shipping.tracking_number }}
+{% if Shipping.Delivery.confirm_url %}
+お問い合わせURL：{{ Shipping.Delivery.confirm_url }}{{ Shipping.tracking_number }}
+{% endif %}
+{% endif %}
+
+また配送状況の反映までしばらくお時間がかかりますので、
+しばらく経ってからご確認いただきますよう
+ご了承ください。
+
+************************************************
+　ご注文商品明細
+************************************************
+
+{% for OrderItem in Shipping.productOrderItems %}
+商品コード：{{ OrderItem.product_code }}
+商品名：{{ OrderItem.product_name }}  {{ OrderItem.classcategory_name1 }}  {{ OrderItem.classcategory_name2 }}
+数量：{{ OrderItem.quantity|number_format }}
+
+{% endfor %}
+
+============================================
+
+************************************************
+　ご注文者情報
+************************************************
+お名前：{{ Order.name01 }} {{ Order.name02 }} 様
+お名前(カナ)：{{ Order.kana01 }} {{ Order.kana02 }} 様
+{% if Order.company_name %}
+会社名：{{ Order.company_name }}
+{% endif %}
+郵便番号：〒{{ Order.postal_code }}
+住所：{{ Order.Pref.name }}{{ Order.addr01 }}{{ Order.addr02 }}
+電話番号：{{ Order.phone_number }}
+
+************************************************
+　配送情報
+************************************************
+
+お名前：{{ Shipping.name01 }} {{ Shipping.name02 }} 様
+お名前(カナ)：{{ Shipping.kana01 }} {{ Shipping.kana02 }} 様
+{% if Shipping.company_name %}
+会社名：{{ Shipping.company_name }}
+{% endif %}
+郵便番号：〒{{ Shipping.postal_code }}
+住所：{{ Shipping.Pref.name }}{{ Shipping.addr01 }}{{ Shipping.addr02 }}
+電話番号：{{ Shipping.phone_number }}
+
+
+{% endautoescape %}
