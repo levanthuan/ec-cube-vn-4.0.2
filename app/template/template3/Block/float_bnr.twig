@@ -1,0 +1,24 @@
+<div id="float_bnr">
+	<div class="bnr">
+        <p class="close_btn"><a href="#" onclick="c_control(); return false;" class="fas fa-times"></a></p>
+        <p class="img pc_only"><a href="#"><img src="{{ asset('assets/img/top/float_bnr.jpg') }}"></a></p>
+        <p class="img sp_only"><a href="#"><img src="{{ asset('assets/img/top/float_bnr_sp.jpg') }}"></a></p>
+	</div>
+</div>
+
+<script type="text/javascript">
+var result = document.cookie.indexOf('float_bnr20200102');
+if(result !== -1) {
+  c_control();
+}
+
+function c_control(){
+  var host = location.hostname ;
+  var kigen = 30;
+  date1 = new Date();
+  date1.setTime(date1.getTime() + kigen*24*60*60*1000);
+  date2 = date1.toGMTString();
+  document.cookie = 'float_bnr20200102=treu; domain=' + host + '; path=/; expires=' + date2;
+  document.getElementById('float_bnr').style.display = "none";
+}
+</script>

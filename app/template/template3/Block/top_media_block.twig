@@ -1,0 +1,19 @@
+{% set topMedias = repository('Eccube\\Entity\\TopMedia').getList() %}
+
+<div class="ec-categoryRole-2">
+    <div class="ec-role">
+    	<div class="ec-secHeading">
+            <span class="ec-secHeading__ja">{{ 'TOPメディア'|trans }}</span>
+        </div>
+        <div class="ec-categoryRole__list">
+        {% for topMedia in topMedias %}
+            <div class="ec-categoryRole__listItem">
+                <a href="{{ topMedia.url }}">
+                    <img src="{{ url('homepage') }}html/upload/save_banner/{{ topMedia.image }}" alt="">
+                    <p class="name">{{ topMedia.title }}<br><small>{{ topMedia.date_time }}</small></p>
+                </a>
+            </div>
+        {% endfor %}
+        </div>        
+    </div>
+</div>

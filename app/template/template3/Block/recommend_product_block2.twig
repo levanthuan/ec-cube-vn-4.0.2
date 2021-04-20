@@ -1,0 +1,88 @@
+{% set product_recommend02s = repository('Eccube\\Entity\\ProductRecommend02').getProductRecommend %}
+{% set isMobile = repository('Eccube\\Entity\\Block').isMobile() %}
+
+{% block javascript %}
+    <script>
+        $(function() {
+            $('.ec-sliderProduct_list').slick({
+                dots: false,
+                arrows: false,
+                slidesToShow: 6,
+                slidesToScroll: 1,
+                touchMove: true,
+                infinite:true,
+                centerMode: true,
+                centerPadding: '160px',
+                responsive: [
+                {
+                  breakpoint: 768,
+                  settings: {
+                    arrows: false,
+                    centerMode: true,
+                    centerPadding: '40px',
+                    slidesToShow: 2
+                  }
+                },
+                {
+                  breakpoint: 480,
+                  settings: {
+                    arrows: false,
+                    centerMode: true,
+                    centerPadding: '40px',
+                    slidesToShow: 1
+                  }
+                }
+              ]
+            });
+            $('.carousel-prev').click(function(){ 
+                $('.slick-slider').slick('slickPrev');
+            } );
+            $('.carousel-next').click(function(e){
+                e.preventDefault(); 
+                $('.slick-slider').slick('slickNext');
+            } );
+        });
+    </script>
+{% endblock javascript %}
+
+<div class="ec-sliderProduct">
+    <div class="ec-role">
+        <div class="ec-secHeading">
+            <i class='bx bx-grid-horizontal'></i>
+            <span class="ec-secHeading__ja">{{ '新着商品'|trans }}</span>
+        </div>
+    </div>
+    <div class="ec-sliderProduct_wrap">
+        <div class="slick-arrow">
+            <button class="carousel-nav carousel-prev"><i class="bx bx-chevrons-left"></i>Prev</button>
+            <button class="carousel-nav carousel-next">Next<i class="bx bx-chevrons-right"></i></button>
+        </div>
+        <div class="ec-sliderProduct_list">
+            {% for ProductRecommend in product_recommend02s %}
+                {% if (isMobile and ProductRecommend.device_sp) or (isMobile == false and ProductRecommend.device_pc) %}
+                <div class="ec-sliderProduct_item">
+                    <a href="{{ url('product_detail', {'id': ProductRecommend.Product.id}) }}">
+                    	<figure class="ec-animation-image">
+                        	<img src="{{ asset(ProductRecommend.Product.mainFileName|no_image_product, "save_image") }}">
+                        </figure>
+                        <p class="ec-title">{{ ProductRecommend.Product.name }}</p>
+
+                        {% set Product = ProductRecommend.Product %}
+                        <p class="ec-price">
+                            {% if Product.hasProductClass %}
+                                {% if Product.getPrice02Min == Product.getPrice02Max %}
+                                    {{ Product.getPrice02IncTaxMin|price }}
+                                {% else %}
+                                    {{ Product.getPrice02IncTaxMin|price }} ～ {{ Product.getPrice02IncTaxMax|price }}
+                                {% endif %}
+                            {% else %}
+                                {{ Product.getPrice02IncTaxMin|price }}
+                            {% endif %}<span>(税込)</span>
+                        </p>
+                    </a>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>

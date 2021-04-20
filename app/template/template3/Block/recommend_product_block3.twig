@@ -1,0 +1,46 @@
+{#
+ * This file is part of the Recommend Product plugin
+ *
+Copyright(c) EC-CUBE CO.,LTD. All Rights Reserved.
+
+http://www.ec-cube.co.jp/
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+#}
+{% set product_recommend03s = repository('Eccube\\Entity\\ProductRecommend03').getProductRecommend %}
+{% set isMobile = repository('Eccube\\Entity\\Block').isMobile() %}
+
+<!-- ▼item_list▼ -->
+<div class="ec-newItemRole ec-recommendProduct base-border">
+    <div class="ec-role">
+        <div class="ec-secHeading">
+            <span class="ec-secHeading__ja"><i class="bx bx-store-alt"></i>{{ '人気ランキング'|trans }}</span>
+        </div>
+        <div class="ec-newItemRole__list">
+            {% for RecommendProduct in product_recommend03s %}
+                <div class="ec-newItemRole__listItem">
+                    <a href="{{ url('product_detail', {'id': RecommendProduct.Product.id}) }}">
+                        <img src="{{ asset(RecommendProduct.Product.mainFileName|no_image_product, "save_image") }}">
+                        <p class="ec-newItemRole__listItemTitle">{{ RecommendProduct.Product.name }}</p>
+                        {% set Product = RecommendProduct.Product %}
+                        <p class="price02-default" style="padding: 0 15px 15px 15px; color: #343C43">
+                            {% if Product.hasProductClass %}
+                                {% if Product.getPrice02Min == Product.getPrice02Max %}
+                                    {{ Product.getPrice02IncTaxMin|price }}
+                                {% else %}
+                                    {{ Product.getPrice02IncTaxMin|price }} ～ {{ Product.getPrice02IncTaxMax|price }}
+                                {% endif %}
+                            {% else %}
+                                {{ Product.getPrice02IncTaxMin|price }}
+                            {% endif %}<span>(税込)</span>
+                        </p>
+                    </a>
+                </div>
+                {# {% if (isMobile and RecommendProduct.device_sp) or (isMobile == false and RecommendProduct.device_pc) %}
+                {% endif %} #}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- ▲item_list▲ -->

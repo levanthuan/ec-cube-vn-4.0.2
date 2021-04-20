@@ -1,0 +1,19 @@
+{% set baseInfo = repository('Eccube\\Entity\\BaseInfo').get() %}
+
+<div class="ec-headerNaviRoleSP">
+    <div class="ec-headerRole__navSP">
+        {{ include('Block/nav_sp.twig') }}
+    </div>
+    <div class="ec-headerRole__title">
+        <div class="ec-headerTitle">
+            <div class="ec-headerTitle__title">
+				<h1>
+                    <a href="{{ url('homepage') }}">
+                        <img src="{{ asset('assets/img/header_logo.png') }}" alt="">
+                        {# SMOOTH <span>EC</span> #}
+                    </a>
+                </h1>				
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+{% set Topics = repository('Eccube\\Entity\\Topic').getListTopicOn() %}
+
+<div class="ec-topic">
+    <div class="ec-role">
+        <div class="ec-secHeading">
+            <i class='bx bxs-shopping-bags'></i>
+            <span class="ec-secHeading__ja">{{ '今週の注目商品'|trans }}</span>
+        </div>
+        <div class="ec-topic__contents">
+            {% for key,Topic in Topics %}
+            <section class="ec-topic__item {{ key%2 == 0 ? 'is-even' : 'is-odd' }}">
+                <figure class="ec-topic__item-image ec-animation-image">
+                    {% if Topic.image is not null %}
+                        <img class="ec-animation-image-pic" src="{{ url('homepage') }}html/upload/save_banner/{{ Topic.image }}" alt="{{ Topic.title }}">
+                    {% else %}
+                        <img class="ec-animation-image-pic" src="{{ asset(''|no_image_product, 'save_image') }}" alt="{{ Topic.title }}">
+                    {% endif %}
+                </figure>
+                <div class="ec-topic__item-contents">
+                    <h3 class="ec-topic__item-name">{{ Topic.title }}</h3>
+                    <p class="ec-topic__item-description">{{ Topic.tag }}</p>
+                    <p class="ec-topic__item-text">{{ Topic.content }}</p>
+                    <a class="ec-button" href="{{ Topic.url }}">カテゴリーへ</a>
+                </div>
+            </section>
+            {% endfor %}
+        </div>
+    </div>
+</div>
