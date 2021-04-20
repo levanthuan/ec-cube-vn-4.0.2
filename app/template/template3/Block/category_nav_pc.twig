@@ -1,0 +1,31 @@
+
+{% set Categories = repository('Eccube\\Entity\\Category').getList() %}
+
+{% macro tree(Category) %}
+    {% from _self import tree %}
+    <a href="{{ url('product_list') }}?category_id={{ Category.id }}">
+        {{ Category.name }}
+    </a>
+    {% if Category.children|length > 0 %}
+        <ul class="child">
+      
+            {% for ChildCategory in Category.children %}
+                <li>
+                    {{ tree(ChildCategory) }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endmacro %}
+
+{% from _self import tree %}
+
+<div class="ec-categoryList_wrap">
+    <ul class="ec-categoryLists">         
+        {% for Category in Categories %}
+            <li>
+                {{ tree(Category) }}
+            </li>
+        {% endfor %}
+    </ul>
+</div>

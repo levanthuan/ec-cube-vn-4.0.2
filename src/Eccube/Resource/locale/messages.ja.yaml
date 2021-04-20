@@ -415,6 +415,7 @@ admin.common.create: 作成
 admin.common.create__new: 新規作成
 admin.common.create__new_slider: 新規スライダー作成
 admin.common.create__new_header_sp: 新規ヘッダーSP作成
+admin.common.create__new_topic: 新規トピック作成
 admin.common.up: 上へ
 admin.common.down: 下へ
 admin.common.upload: アップロード
@@ -944,6 +945,7 @@ admin.content.maintenance_management: メンテナンス管理
 admin.content.faq_management: FAQ管理
 admin.content.faq_category_management: FAQカテゴリ管理
 admin.content.product_recommend_cart: カート画面オススメ
+admin.content.topic_management: TOPIC管理
 admin.content.product_recommend: おすすめ商品
 admin.content.product_recommend02: おすすめコンテンツ
 admin.content.product_recommend03: 商品一覧
@@ -1063,6 +1065,9 @@ admin.content.banner.image: 画像
 admin.content.banner.url: URL
 admin.content.banner.category: カテゴリー
 admin.content.banner.banner_registration: バナー登録
+admin.content.topic.image: 画像
+admin.content.topic.url: URL
+admin.content.topic.topic_registration: トピック登録
 
 #------------------------------------------------------------------------------------
 # 設定

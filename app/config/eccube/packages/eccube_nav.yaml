@@ -85,6 +85,9 @@ parameters:
                         banner:
                             name: admin.content.banner_management
                             url: admin_content_banner
+                        topic:
+                            name: admin.content.topic_management
+                            url: admin_content_topic
         setting:
             name: admin.setting
             icon: fa-cog

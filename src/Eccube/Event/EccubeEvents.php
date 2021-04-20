@@ -106,6 +106,19 @@ final class EccubeEvents
     const ADMIN_CONTENT_BANNER_DELETE_COMPLETE = 'admin.content.banner.delete.complete';
 
     /**
+     * Admin/Content/TopicController
+     */
+    // index
+    const ADMIN_CONTENT_TOPIC_INDEX_COMPLETE = 'admin.content.topic.index.initialize';
+
+    // edit
+    const ADMIN_CONTENT_TOPIC_EDIT_INITIALIZE = 'admin.content.topic.edit.initialize';
+    const ADMIN_CONTENT_TOPIC_EDIT_COMPLETE = 'admin.content.topic.edit.complete';
+
+    // delete
+    const ADMIN_CONTENT_TOPIC_DELETE_COMPLETE = 'admin.content.topic.delete.complete';
+
+    /**
      * Admin/Customer/CustomerController
      */
     // index

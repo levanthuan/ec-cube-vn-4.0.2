@@ -1,0 +1,47 @@
+
+{% set campaignBanners = repository('Eccube\\Entity\\Banner').getCampaignBanner() %}
+
+<div class="ec-headerNaviRole">
+    <div class="ec-headerNaviRole__left pc_only">
+		<div class="ec-headerRole__title">
+			<div class="ec-headerTitle">
+				<div class="ec-headerTitle__title">
+					<h1>
+                        <a href="{{ url('homepage') }}">
+                            <img src="{{ asset('assets/img/header_logo.png') }}" alt="Smooth EC" style="vertical-align: top;">
+                            {# SMOOTH <span>EC</span> #}
+                        </a>
+                    </h1>
+				</div>
+			</div>
+		</div>		
+    </div>
+	<div class="ec-menuCategories_nav pc_only">
+        <ul class="ec-headerNav">
+            <li><a href="{{ url('product_list') }}">全商品</a></li>
+            <li>
+                <button id="btn-category_toggle"><i class="bx bx-list-ul"></i></button>
+                <div class="ec-headerCategories_wrap">
+                    <h2>カテゴリ一覧</h2>
+                    {{ include('Block/category_nav_pc.twig') }}
+                </div>
+                
+            </li>
+        </ul>
+        
+    </div>
+    <div class="ec-headerNaviRole__right">
+        <div class="ec-headerNaviRole__nav pc_only">
+            {{ include('Block/login.twig') }}
+        </div>
+        <div class="ec-headerSearch__wrap">
+            <button id="searchBtn"><i class="bx bx-search"></i></button>
+            {{ render(path('block_search_product')) }}
+        </div>
+        <div class="ec-headerRole__cart">
+            {{ include('Block/cart.twig') }}
+        </div>
+        
+    </div>
+	
+</div>

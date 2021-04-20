@@ -1,0 +1,46 @@
+{% set product_recommends = repository('Eccube\\Entity\\ProductRecommend').getProductRecommend %}
+{% set isMobile = repository('Eccube\\Entity\\Block').isMobile() %}
+
+<div class="ec-highlightProduct">
+    <div class="ec-role">
+        <div class="ec-secHeading">
+            <span class="ec-secHeading__ja">これがえぞ商店の魅力</span>
+        </div>
+        <div class="ec-highlightProduct__list">
+            {% for ProductRecommend in product_recommends %}
+                {% if (isMobile and ProductRecommend.device_sp) or (isMobile == false and ProductRecommend.device_pc) %}
+                <div class="ec-highlightProduct_item">
+                    <p class="ec-itemTitle">{{ ProductRecommend.Product.name }}<br></p>
+                    <p class="ec-itemDetail">
+                        <a href="{{ url('product_detail', {'id': ProductRecommend.Product.id}) }}">詳細</a>
+                    </p>
+                    <figure class="ec-animation-image">
+                        <img class="ec-animation-image-pic" src="{{ asset(ProductRecommend.Product.mainFileName|no_image_product, "save_image") }}">
+                    </figure>
+                    {% set Product = ProductRecommend.Product %}
+                    <div class="ec-itemMeta">
+                        <ul class="ec-itemTags">
+                            {% for Tag in Product.Tags %}
+                                <li class="tag_{{ Tag.id }}">#{{ Tag }}</li>
+                            {% endfor %}
+                        </ul>
+                        <p class="ec-itemPrice">
+                            {% if Product.hasProductClass %}
+                                {% if Product.getPrice02Min == Product.getPrice02Max %}
+                                    {{ Product.getPrice02IncTaxMin|price }}
+                                {% else %}
+                                    {{ Product.getPrice02IncTaxMin|price }} ～ {{ Product.getPrice02IncTaxMax|price }}
+                                {% endif %}
+                            {% else %}
+                                {{ Product.getPrice02IncTaxMin|price }}
+                            {% endif %}<span>(税込)</span>
+                        </p>
+                    </div>
+                    {# <div class="ec-itemDesc">{{ Product.description_detail|raw|nl2br }}</div> #}
+                   
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</div>

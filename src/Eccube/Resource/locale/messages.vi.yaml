@@ -424,6 +424,7 @@ admin.common.create: Tạo
 admin.common.create__new: Tạo mới
 admin.common.create__new_slider: Tạo mới Slide
 admin.common.create__new_header_sp: Tạo mới Banner SP
+admin.common.create__new_topic: Tạo mới Topic
 admin.common.up: Di chuyển lên
 admin.common.down: Di chuyển xuống
 admin.common.upload: Tải lên
@@ -950,6 +951,7 @@ admin.content.js_management: Quản lý Javascript
 admin.content.block_management: Khối
 admin.content.cache_management: Bộ nhớ đệm
 admin.content.maintenance_management: Bảo trì
+admin.content.topic_management: Quản lý Topic
 
 # Labels / Messages
 admin.content.file.add_file__card_title: Thêm tệp / thư mục
@@ -1050,6 +1052,9 @@ admin.content.banner.image: Ảnh
 admin.content.banner.url: URL
 admin.content.banner.category: Loại Banner
 admin.content.banner.banner_registration: Đăng ký Banner
+admin.content.topic.image: Hình ảnh
+admin.content.topic.url: URL
+admin.content.topic.topic_registration: Đăng ký Topic
 
 #------------------------------------------------------------------------------------
 # Settings

@@ -1,0 +1,23 @@
+{% if CustomerRank and CustomerRank.id != 2 %}
+<div class="ec-productRole__price" style="color: #e32504">
+    <p style="font-size: 23px;">{{ CustomerRank.name }}{{ 'customerrank.common.customer_price'|trans }}</p>
+    {% if Product.hasProductClass -%}
+        {% if Product.CustomerRankPriceIncTaxMin == Product.CustomerRankPriceIncTaxMax %}
+            <div class="ec-price">
+                <span class="ec-price__price" id="customer_rank_price_default">{{ Product.CustomerRankPriceIncTaxMin|price }}</span>
+                <span class="ec-price__tax">{{ 'common.tax_include'|trans }}</span>
+            </div>
+        {% else %}
+            <div class="ec-price">
+                <span class="ec-price__price" id="customer_rank_price_default">{{ Product.CustomerRankPriceIncTaxMin|price }} ～ {{ Product.getCustomerRankPriceIncTaxMax|price }}</span>
+                <span class="ec-price__tax">{{ 'common.tax_include'|trans }}</span>
+            </div>
+        {% endif %}
+    {% else %}
+        <div class="ec-price">
+            <span class="ec-price__price" id="customer_rank_price_default">{{ Product.CustomerRankPriceIncTaxMin|price }}</span>
+            <span class="ec-price__tax">{{ 'common.tax_include'|trans }}</span>
+        </div>
+    {% endif %}
+</div>
+{% endif %}
