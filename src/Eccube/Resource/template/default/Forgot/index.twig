@@ -38,6 +38,9 @@ file that was distributed with this source code.
                                         {{ form_widget(form.login_email) }}
                                         {{ form_errors(form.login_email) }}
                                     </div>
+                                    {% if error_message is defined %}
+                                        <div class="text-danger">{{ error_message }}</div>
+                                    {% endif %}
                                 </dd>
                             </dl>
                         </div>
