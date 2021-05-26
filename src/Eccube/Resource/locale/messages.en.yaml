@@ -275,7 +275,7 @@ front.product.sale_price: Selling Price
 front.product.code: SKU
 front.product.related_category: Related Category
 front.product.continue: Continue Shopping
-front.product.invalid_quantity: Please enter more than 1.
+front.product.invalid_quantity: Please enter more than
 front.product.product_class_unselected: The item is not selected.
 
 #------------------------------------------------------------------------------------

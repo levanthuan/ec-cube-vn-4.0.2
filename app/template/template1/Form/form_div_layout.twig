@@ -1,3 +1,17 @@
+{#
+This file is part of EC-CUBE
+
+Copyright(c) LOCKON CO.,LTD. All Rights Reserved.
+
+http://www.lockon.co.jp/
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+#}
+{#
+ - form_div_layout.html.twig
+ - https://github.com/symfony/symfony/blob/master/src/Symfony/Bridge/Twig/Resources/views/Form/form_div_layout.html.twig
+#}
 {%- extends 'form_div_layout.html.twig' -%}
 
 {%- block form_errors -%}
@@ -11,7 +25,7 @@
 {%- block form_label -%}
     {{ parent() }}
     {%- if required -%}
-        <span class="ec-required">{{ '必須'|trans }}</span>
+        <span class="ec-required">{{ 'common.required'|trans }}</span>
     {%- endif -%}
 {%- endblock form_label -%}
 
@@ -57,7 +71,7 @@
 {%- endblock checkbox_widget -%}
 
 {%- block widget_attributes -%}
-    {%- if id %} id="{{ id }}" {% endif -%}
+    {%- if id %} id="{{ id }}"{% endif -%}
     name="{{ full_name }}"
     {%- if disabled %} disabled="disabled"{% endif -%}
     {%- if required %} required="required"{% endif -%}

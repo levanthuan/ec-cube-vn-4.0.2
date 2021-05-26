@@ -4,7 +4,9 @@
 <div class="ec-newItemRole base-border">
     <div class="ec-role">
         <div class="ec-secHeading">
-            <span class="ec-secHeading__ja">{{ '最新の製品'|trans }}</span>
+            <span class="ec-secHeading__en">{{ 'front.block.new_item.title__en'|trans }}</span>
+            <span class="ec-secHeading__line"></span>
+            <span class="ec-secHeading__ja">{{ 'front.block.new_item.title__ja'|trans }}</span>
         </div>
         <div class="ec-newItemRole__list">
             {% for Product in product_recommends %}
@@ -29,7 +31,7 @@
             {% endfor %}
         </div>
         <div class="ec-btn-top-wrap">
-            <a href="{{ url('product_list') }}?category_id=1" class="ec-btn-top">もっと見る</a>
+            <a href="{{ url('product_list') }}?category_id=1" class="ec-btn-top">Xem thêm</a>
         </div>
     </div>
 </div>

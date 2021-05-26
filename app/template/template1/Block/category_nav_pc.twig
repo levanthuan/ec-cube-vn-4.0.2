@@ -1,4 +1,13 @@
+{#
+This file is part of EC-CUBE
 
+Copyright(c) LOCKON CO.,LTD. All Rights Reserved.
+
+http://www.lockon.co.jp/
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+#}
 {% set Categories = repository('Eccube\\Entity\\Category').getList() %}
 
 {% macro tree(Category) %}
@@ -8,7 +17,6 @@
     </a>
     {% if Category.children|length > 0 %}
         <ul class="child">
-      
             {% for ChildCategory in Category.children %}
                 <li>
                     {{ tree(ChildCategory) }}
@@ -23,11 +31,11 @@
 <div class="ec-categoryNaviRole only-pc">
     <div class="ec-itemNav">
         <ul class="ec-itemNav__nav">
-            <li><a href="/">ホーム<span>home</span></a></li>
-            <li><a href="{{ url('product_list') }}">商品一覧<span>products</span></a></li>
-            <li><a href="{{ url('homepage') }}guide">ご利用ガイド<span>guide</span></a></li>
-            <li><a href="{{ url('homepage') }}help/company">会社概要<span>company</span></a></li>
-            <li><a href="{{ url('homepage') }}contact">お問合せ<span>contact</span></a></li>
+            <li><a href="/">Trang chủ<span>home</span></a></li>
+            <li><a href="{{ url('product_list') }}">Danh sách sản phẩm<span>products</span></a></li>
+            <li><a href="{{ url('homepage') }}guide">Hướng dẫn<span>guide</span></a></li>
+            <li><a href="{{ url('homepage') }}help/company">Công ty<span>company</span></a></li>
+            <li><a href="{{ url('homepage') }}contact">Liên hệ<span>contact</span></a></li>
             {# {% for Category in Categories %}
                 <li>
                     {{ tree(Category) }}

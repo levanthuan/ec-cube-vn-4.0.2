@@ -287,7 +287,7 @@ front.product.sale_price: Giá bán
 front.product.code: Mã sản phẩm
 front.product.related_category: Danh mục liên quan
 front.product.continue: Tiếp tục mua sắm
-front.product.invalid_quantity: Vui lòng nhập nhiều hơn 1.
+front.product.invalid_quantity: Vui lòng nhập nhiều hơn
 front.product.product_class_unselected: Mục không được chọn.
 
 #------------------------------------------------------------------------------------
