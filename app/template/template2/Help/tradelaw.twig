@@ -3,7 +3,7 @@
 {% block main %}
     <div class="ec-role">
         <div class="ec-pageHeader">
-            <h1> {{ '特定商取引法に基づく表記'|trans }}</h1>
+            <h1> {{ '【特定商取引法に基づく表記】'|trans }}</h1>
         </div>
         <div class="ec-off1Grid">
             <div class="ec-off1Grid__cell">
@@ -11,96 +11,165 @@
 
                     <dl>
                         <dt>
+                            <label class="ec-label">販売社名</label>
+                        </dt>
+                        <dd>白崎繊維工業株式会社</dd>
+                    </dl>
+
+                    <dl>
+                        <dt>
+                            <label class="ec-label">運営統括責任者</label>
+                        </dt>
+                        <dd>白崎 善大</dd>
+                    </dl>
+
+                    <dl>
+                        <dt>
+                            <label class="ec-label">所在地</label>
+                        </dt>
+                        <dd>
+                            〒003-0028<br>
+                            北海道札幌市白石区平和通3丁目南1-4
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt>
                             <label class="ec-label">電話番号</label>
                         </dt>
-                        <dd>0000-0000-0000</dd>
+                        <dd>011-861-4146</dd>
+                    </dl>
+
+                    <dl>
+                        <dt>
+                            <label class="ec-label">FAX番号</label>
+                        </dt>
+                        <dd>011-862-8640</dd>
                     </dl>
 
                     <dl>
                         <dt>
                             <label class="ec-label">メールアドレス</label>
                         </dt>
-                        <dd><a href="mailto:{{ BaseInfo.email02 }}">{{ BaseInfo.email02 }}</a></dd>
-                    </dl>
-
-                    <dl>
-                        <dt>
-                            <label class="ec-label">URL</label>
-                        </dt>
-                        <dd><a href="{{ url('homepage') }}">{{ url('homepage') }}</a></dd>
-                    </dl>
-
-                    <dl>
-                        <dt>
-                            <label class="ec-label">商品代金以外の必要料金</label>
-                        </dt>
-                        <dd>・代金引換でご購入の際の代引手数料。<br>
-・送料に関しましては、重量により変動致します。</dd>
-                    </dl>
-
-                    <dl>
-                        <dt>
-                            <label class="ec-label">申し込みの有効期限</label>
-                        </dt>
-                        <dd>原則、受注確認（受注確認の為の自動送信メール発信）後、5日間とします。</dd>
-                    </dl>
-
-                    <dl>
-                        <dt>
-                            <label class="ec-label">不良品</label>
-                        </dt>
-                        <dd>初期不良につきましては交換もしくは修理の対応をさせていただきます。商品到着日から7日以内に当社までご連絡ください。</dd>
+                        <dd>watayuki-honten@sirasaki.co.jp</dd>
                     </dl>
                     
                     <dl>
                         <dt>
+                            <label class="ec-label">販売URL</label>
+                        </dt>
+                        <dd><a href="https://www.futon-ten.jp/" target="_blank">https://www.futon-ten.jp/</a></dd>
+                    </dl>
+
+                    <dl>
+                        <dt>
+                            <label class="ec-label">お注文方法</label>
+                        </dt>
+                        <dd>
+                            ショッピングカート<br>
+                            メール<br>
+                            ＦＡＸ<br>
+                            オーダーフォーム
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt>
+                            <label class="ec-label">お支払い方法</label>
+                        </dt>
+                        <dd>
+                            クレジットカード<br>
+                            代金引換<br>
+                            銀行振込・郵便振替<br>
+                            コンビニ・郵便局後払い<br>
+                            ※ヤマトのカードは法人様及びリンク先及び役務及び予約商品及びオーダー品にはご利用出来ません。
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt>
+                            <label class="ec-label">商品代金以外の必要金額</label>
+                        </dt>
+                        <dd>
+                                代金引換の場合は代引き手数料<br><br>
+
+                                代引き手数料<br>
+                                1万円未満330円<br>
+                                3万円未満440円<br>
+                                3万円以上10万円未満660円<br>
+                                10万円以上30万円まで1,100円です。<br><br>
+
+                                銀行振込・郵便振替の場合は振込（振替）手数料はお客様のご負担でお願いします。<br><br>
+
+                                コンビニ・郵便局後払いの場合は後払い手数料：一律660円（請求書発行代込）です。<br><br>
+
+                                送料（～160cmまで）：北海道770円（離島は除く）　本州1320円（離島は除く）　四国・九州1650円（離島は除く）　沖縄2200円（離島は除く）<br>
+                                送料（180cm～　　）：北海道1540円（離島は除く）  本州2640円（離島は除く）　四国・九州3300円（離島は除く）　沖縄離島4400円（離島は除く）
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt>
                             <label class="ec-label">販売数量</label>
                         </dt>
-                        <dd>特に指定はございません（商品によって設定あり）</dd>
+                        <dd>1個から</dd>
                     </dl>
 
                     <dl>
                         <dt>
-                            <label class="ec-label">引き渡し時期</label>
+                            <label class="ec-label">お申込み有効期限</label>
                         </dt>
-                        <dd>ご注文受付後、7日以内にお届けいたします。<br>
-天候不順・配送業者の都合・その他何らかの理由により遅延する場合はメール等でお知らせいたします。</dd>
+                        <dd>
+                            7日以内にお願いいたします。<br>
+                            7日間入金がない場合は、キャンセルとさせていただきます。
+                        </dd>
                     </dl>
 
                     <dl>
                         <dt>
-                            <label class="ec-label">お支払方法</label>
+                            <label class="ec-label">商品引渡し時期</label>
                         </dt>
-                        <dd>銀行振込・クレジットカード・代金引換</dd>
+                        <dd>
+                            前払いの場合、指定日が無ければ入金確認後、即日～２日営業日以内で発送致します。<br>
+                            代引の場合、指定日が無ければご注文確認後、即日～2日営業日以内で発送致します。<br>
+                            その他の支払方法の場合、指定日が無ければご注文後、即日～2日営業日以内で発送致します。<br>
+                            後払いの場合、商品到着後、当社提携会社より送付されて請求書のガイドラインに基づきご入金ください。
+                        </dd>
                     </dl>
 
                     <dl>
                         <dt>
-                            <label class="ec-label">返品・交換について</label>
+                            <label class="ec-label">商品引渡し方法</label>
                         </dt>
-                        <dd>初期不良につきましては交換もしくは修理の対応をさせていただきます。商品到着日から7日以内に当社までご連絡ください。</dd>
+                        <dd>当方にて手配後、運送会社による配送</dd>
                     </dl>
 
                     <dl>
                         <dt>
-                            <label class="ec-label">お支払い期限</label>
+                            <label class="ec-label">返品・不良品について</label>
                         </dt>
-                        <dd>-代金引換の場合<br>
-商品のお届け時に、佐川急便配達員に代金のお支払いをお願いします。</dd>
+                        <dd>
+                            「不良品・当社の商品の間違い」の場合は当社が負担いたします。<br>
+                            配送途中の破損などの事故がございましたら、弊社までご連絡下さい。<br>
+                            送料・手数料ともに弊社負担で早急に新品をご送付致します。<br><br>
+
+                            【返品対象】<br>
+                            「不良品・当社の商品の間違い」の場合<br><br>
+
+                            【返品時期】<br>
+                            ご購入後7日以内にご連絡があった場合に返金可能となります。<br><br>
+
+                            【返品方法】<br>
+                            まずはメールかお電話にて返品する旨をご連絡してください。<br>
+                            7日以内にご購入代金を指定の口座へお振込みいたします（夏季休業、年末年始休業、土日祝日を除く）。
+                        </dd>
                     </dl>
 
                     <dl>
                         <dt>
-                            <label class="ec-label">返品期限</label>
+                            <label class="ec-label">表現、及び商品に関する注意書き</label>
                         </dt>
-                        <dd>商品の返品・交換には初期不良の場合以外では応じられません。</dd>
-                    </dl>
-
-                    <dl>
-                        <dt>
-                            <label class="ec-label">返品送料</label>
-                        </dt>
-                        <dd>初期不良、発送商品間違いの場合、当店着払いにて対応いたします。</dd>
+                        <dd>本商品に示された表現や再現性には個人差があり、 必ずしも利益や効果を保証したものではございません。</dd>
                     </dl>
                 </div>
             </div>

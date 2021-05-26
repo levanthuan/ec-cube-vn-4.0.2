@@ -39,7 +39,7 @@
 <div class="ec-newsRole">
     <div class="ec-role">
         <div class="ec-secHeading">
-            <span class="ec-secHeading__ja">お知らせ</span>
+            <span class="ec-secHeading__ja">{{ 'front.block.news.title__en'|trans }}</span>
             <span class="ec-secHeading__en">-news-</span>
         </div>
         <div class="ec-newsRole__news">
@@ -66,7 +66,7 @@
                         {{ News.description|raw|nl2br }}
                         {% if News.url %}
                             <br>
-                            <a href="{{ News.url }}" {% if News.link_method == '1' %}target="_blank"{% endif %}>{{ '詳しくはこちら'|trans }}</a>
+                            <a href="{{ News.url }}" {% if News.link_method == '1' %}target="_blank"{% endif %}>{{ 'front.block.news.see_details'|trans }}</a>
                         {% endif %}
                     </div>
                 </div>

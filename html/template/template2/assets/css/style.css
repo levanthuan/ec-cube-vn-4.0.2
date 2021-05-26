@@ -1,7 +1,7 @@
 @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');
+/*@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&display=swap');*/
+/*@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');*/
+/*@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap');*/
 @import url('circle.css');
 
 html {
@@ -1172,7 +1172,7 @@ transition: all 0.2s ease 0s;
     color: #6E4D0F !important;
     border-radius: 5px;
 }
-}
+
   .ec-blockBtn--cancel:focus, .ec-blockBtn--cancel.focus, .ec-blockBtn--cancel:active:focus, .ec-blockBtn--cancel:active.focus, .ec-blockBtn--cancel.active:focus, .ec-blockBtn--cancel.active.focus {
     outline: 5px auto -webkit-focus-ring-color;
     outline-offset: -2px; }

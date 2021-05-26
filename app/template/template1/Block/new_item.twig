@@ -24,14 +24,14 @@
                                 {% endif %}
                             {% else %}
                                 {{ Product.getPrice02IncTaxMin|price }}
-                            {% endif %}<span>(税込)</span>
+                            {% endif %}<span>{{ 'common.tax_include'|trans }}</span>
                         </p>
                     </a>
                 </div>
             {% endfor %}
         </div>
         <div class="ec-btn-top-wrap">
-            <a href="{{ url('product_list') }}?category_id=1" class="ec-btn-top">Xem thêm</a>
+            <a href="{{ url('product_list') }}?category_id=1" class="ec-btn-top">{{ 'front.block.new_item.more'|trans }}</a>
         </div>
     </div>
 </div>
