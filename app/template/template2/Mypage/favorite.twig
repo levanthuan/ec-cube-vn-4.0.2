@@ -1,3 +1,13 @@
+{#
+This file is part of EC-CUBE
+
+Copyright(c) LOCKON CO.,LTD. All Rights Reserved.
+
+http://www.lockon.co.jp/
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+#}
 {% extends 'default_frame.twig' %}
 
 {% set mypageno = 'favorite' %}
@@ -8,7 +18,7 @@
     <div class="ec-layoutRole__main">
         <div class="ec-mypageRole">
             <div class="ec-pageHeader">
-                <h1>{{ 'マイページ'|trans }}/{{ 'お気に入り一覧'|trans }}</h1>
+                <h1>{{ 'front.mypage.title'|trans }}/{{ 'front.mypage.nav__favorite'|trans }}</h1>
             </div>
             {% include 'Mypage/navi.twig' %}
         </div>
@@ -17,7 +27,7 @@
             <div class="ec-favoriteRole">
                 {% if pagination.totalItemCount > 0 %}
                     <div class="ec-favoriteRole__header">
-                        <p>{{ '%count%件のお気に入りがあります'|trans({'%count%':pagination.totalItemCount}) }}</p>
+                        <p>{{ 'front.mypage.favorite_count'|trans({'%count%':pagination.totalItemCount}) }}</p>
                     </div>
                     <div class="ec-favoriteRole__detail">
                         <ul class="ec-favoriteRole__itemList">
@@ -28,7 +38,7 @@
                                        href="{{ url('mypage_favorite_delete', { id : Product.id }) }}" {{ csrf_token_for_anchor() }}
                                        data-method="delete">
                                         <div class="ec-icon">
-                                            <i class='bx bx-x'></i>
+                                            <img src="{{ asset('assets/icon/cross-white.svg') }}" alt="close">
                                         </div>
                                     </a>
                                     <a class="ec-favoriteRole__itemThumb" href="{{ url('product_detail', {'id': Product.id}) }}">
@@ -52,7 +62,7 @@
                         {% include "pager.twig" with {'pages': pagination.paginationData} %}
                     </div>
                 {% else %}
-                    <div class="ec-favoriteRole__header">{{ 'お気に入りは登録されていません。'|trans }}</div>
+                    <div class="ec-favoriteRole__header">{{ 'front.mypage.favorite_not_found'|trans }}</div>
                 {% endif %}
             </div>
         </div>
