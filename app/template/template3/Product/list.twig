@@ -1,9 +1,20 @@
+{#
+This file is part of EC-CUBE
+
+Copyright(c) LOCKON CO.,LTD. All Rights Reserved.
+
+http://www.lockon.co.jp/
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+#}
 {% extends 'default_frame.twig' %}
 
 {% set body_class = 'product_page' %}
 
 {% block javascript %}
     <script>
+        eccube.currencySymbol = '{{ currency_symbol() }}';
         eccube.productsClassCategories = {
             {% for Product in pagination %}
             "{{ Product.id|escape('js') }}": {{ class_categories_as_json(Product)|raw }}{% if loop.last == false %}, {% endif %}
@@ -33,7 +44,7 @@
              
                 var $quantity = $form.parent().find('.quantity');
                 if ($quantity.val() < $quantity.attr("min")) {
-                    $quantity[0].setCustomValidity($quantity.attr("min")+'{{ '以上で入力してください。'|trans }}');
+                    $quantity[0].setCustomValidity('{{ 'front.product.invalid_quantity'|trans }}'+$quantity.attr("min"));
                     setTimeout(function() {
                         loadingOverlay('hide');
                     }, 100);
@@ -68,7 +79,7 @@
                         $('.ec-headerRole__cart').html(html);
                     });
                 }).fail(function(data) {
-                    alert('{{ 'カートへの追加に失敗しました。'|trans }}');
+                    alert('{{ 'front.product.add_cart_error'|trans }}');
                 }).always(function(data) {
     
                     $('.add-cart').prop('disabled', false);
@@ -82,10 +93,9 @@
 
 {% block main %}
 
-
     {% if search_form.category_id.vars.errors|length > 0 %}
         <div class="ec-searchnavRole">
-            <p class="errormsg text-danger">{{ 'ご指定のカテゴリは存在しません'|trans }}</p>
+            <p class="errormsg text-danger">{{ 'front.product.search__category_not_found'|trans }}</p>
         </div>
     {% else %}
         <div class="ec-searchnavRole">
@@ -107,11 +117,11 @@
                             {% endif %}
                         {% endfor %}
                     {% else %}
-                    <li class="ec-topicpath__item"><a href="{{ url('product_list') }}">{{ '全て'|trans }}</a>
+                    <li class="ec-topicpath__item"><a href="{{ url('product_list') }}">{{ 'front.product.all_category'|trans }}</a>
                     </li>
                     {% endif %}
                     {% if search_form.vars.value and search_form.vars.value.name %}
-                        <li class="ec-topicpath__item">{{ '「%name%」の検索結果'|trans({ '%name%': search_form.vars.value.name }) }}</li>
+                        <li class="ec-topicpath__item">{{ 'front.product.search_result__keyword'|trans({ '%name%': search_form.vars.value.name }) }}</li>
                     {% endif %}
                 </ol>
             </div>
@@ -121,9 +131,9 @@
             <div class="ec-searchnavRole__infos">
                 <div class="ec-searchnavRole__counter">
                     {% if pagination.totalItemCount > 0 %}
-                        {{ '<span>対象商品：</span><span class="ec-font-bold">%count%</span><span class="mini">件</span>'|trans({ '%count%': pagination.totalItemCount })|raw }}
+                        {{ 'front.product.search_result__detail'|trans({ '%count%': pagination.totalItemCount })|raw }}
                     {% else %}
-                        <span>{{ 'お探しの商品は見つかりませんでした'|trans }}</span>
+                        <span>{{ 'front.product.search__product_not_found'|trans }}</span>
                     {% endif %}
                 </div>
                 {% if pagination.totalItemCount > 0 %}
@@ -158,16 +168,14 @@
                                 <p class="price02-default">
                                     {% if Product.hasProductClass %}
                                         {% if Product.getPrice02Min == Product.getPrice02Max %}
-                                            {{ Product.getPrice02IncTaxMin|price }}
+                                            {{ Product.getPrice02Min|price }} ({{ Product.getPrice02IncTaxMin|price }} <span>{{ 'common.tax_include'|trans }}</span>)
                                         {% else %}
-                                            {{ Product.getPrice02IncTaxMin|price }} ～ {{ Product.getPrice02IncTaxMax|price }}
+                                            {{ Product.getPrice02Min|price }} ～ {{ Product.getPrice02Max|price }} ({{ Product.getPrice02IncTaxMin|price }} ～ {{ Product.getPrice02IncTaxMax|price }} <span>{{ 'common.tax_include'|trans }}</span>)
                                         {% endif %}
                                     {% else %}
-                                        {{ Product.getPrice02IncTaxMin|price }}
-                                    {% endif %}<span>(税込)</span>
+                                        {{ Product.getPrice02Min|price }} ({{ Product.getPrice02IncTaxMin|price }} <span>{{ 'common.tax_include'|trans }}</span>)
+                                    {% endif %}
                                 </p>
-                                
-                            
                                 
                             </a>
 
@@ -177,11 +185,13 @@
                                     <div class="ec-productRole__actions">
                                         {% if form.classcategory_id1 is defined %}
                                             <div class="ec-select">
+                                                {{ form_label(form.classcategory_id1) }}
                                                 {{ form_widget(form.classcategory_id1) }}
                                                 {{ form_errors(form.classcategory_id1) }}
                                             </div>
                                             {% if form.classcategory_id2 is defined %}
                                                 <div class="ec-select">
+                                                    {{ form_label(form.classcategory_id2) }}
                                                     {{ form_widget(form.classcategory_id2) }}
                                                     {{ form_errors(form.classcategory_id2) }}
                                                 </div>
@@ -197,13 +207,13 @@
                                 
                                 <div class="ec-productRole__btn">
                                     <button type="submit" class="ec-blockBtn--cancel add-cart" data-cartid="{{ Product.id }}" form="productForm{{ Product.id }}">
-                                        {{ 'カートに入れる'|trans }}
+                                        {{ 'front.product.add_cart'|trans }}
                                     </button>
                                 </div>
                             {% else %}
                                 <div class="ec-productRole__btn">
                                     <button type="button" class="ec-blockBtn--action zero" disabled="disabled">
-                                        {{ '品切れ中です'|trans }}
+                                        {{ 'front.product.out_of_stock'|trans }}
                                     </button>
                                 </div>
                             {% endif %}
@@ -217,11 +227,11 @@
                     <label for="ec-modal-checkbox" class="ec-modal-overlay-close"></label>
                     <div class="ec-modal-wrap">
                         <label for="ec-modal-checkbox" class="ec-modal-close"><span class="ec-icon"><img src="{{ asset('assets/icon/cross-dark.svg') }}" alt=""/></span></label>
-                        <div id="ec-modal-header" class="text-center">{{ 'カートに追加しました。'|trans }}</div>
+                        <div id="ec-modal-header" class="text-center">{{ 'front.product.add_cart_complete'|trans }}</div>
                         <div class="ec-modal-box">
                             <div class="ec-role">
-                                <label for="ec-modal-checkbox" class="ec-inlineBtn--cancel">{{ 'お買い物を続ける'|trans }}</label>
-                                <a href="{{ url('cart') }}" class="ec-inlineBtn--action">{{ 'カートへ進む'|trans }}</a>
+                                <label for="ec-modal-checkbox" class="ec-inlineBtn--cancel">{{ 'front.product.continue'|trans }}</label>
+                                <a href="{{ url('cart') }}" class="ec-inlineBtn--action">{{ 'common.go_to_cart'|trans }}</a>
                             </div>
                         </div>
                     </div>

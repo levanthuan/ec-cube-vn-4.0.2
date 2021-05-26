@@ -4,7 +4,7 @@
 <div class="ec-newItemRole base-border">
     <div class="ec-role">
         <div class="ec-secHeading">
-            <span class="ec-secHeading__ja">{{ '最新の製品'|trans }}</span>
+            <span class="ec-secHeading__ja">{{ 'front.block.new_item.title__en'|trans }}</span>
         </div>
         <div class="ec-newItemRole__list">
             {% for Product in product_recommends %}
@@ -15,21 +15,21 @@
 
                         <p class="price02-default" style="padding: 0 15px 15px 15px; color: #343C43">
                             {% if Product.hasProductClass %}
-                                {% if Product.getPrice02Min == Product.getPrice02Max %}
-                                    {{ Product.getPrice02IncTaxMin|price }}
-                                {% else %}
-                                    {{ Product.getPrice02IncTaxMin|price }} ～ {{ Product.getPrice02IncTaxMax|price }}
-                                {% endif %}
+                            {% if Product.getPrice02Min == Product.getPrice02Max %}
+                                {{ Product.getPrice02IncTaxMin|price }}
+                            {% else %}
+                                {{ Product.getPrice02IncTaxMin|price }} ～ {{ Product.getPrice02IncTaxMax|price }}
+                            {% endif %}
                             {% else %}
                                 {{ Product.getPrice02IncTaxMin|price }}
-                            {% endif %}<span>(税込)</span>
+                            {% endif %}<span>{{ 'common.tax_include'|trans }}</span>
                         </p>
                     </a>
                 </div>
             {% endfor %}
         </div>
         <div class="ec-btn-top-wrap">
-            <a href="{{ url('product_list') }}?category_id=1" class="ec-btn-top">もっと見る</a>
+            <a href="{{ url('product_list') }}?category_id=1" class="ec-btn-top">{{ 'front.block.new_item.more'|trans }}</a>
         </div>
     </div>
 </div>
