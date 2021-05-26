@@ -3,31 +3,28 @@
         <div class="ec-role" style="text-align: center;">
 			<ul class="ec-footerNavi" style="text-align: center;">
 				<li class="ec-footerNavi__link">
-					<a href="http://www.aprt-inc.net/" target="_blank">運営会社</a>｜
+					<a href="{{ url('contact') }}">{{ 'front.block.footer.inquiry'|trans }}</a>｜
 				</li>
 				<li class="ec-footerNavi__link">
-					<a href="{{ url('contact') }}">お問い合わせ</a>｜
+					<a href="{{ url('entry') }}">{{ 'front.block.login.customer_registration'|trans }}</a>｜
 				</li>
 				<li class="ec-footerNavi__link">
-					<a href="{{ url('homepage') }}entry">新規会員登録</a>｜
+					<a href="{{ url('mypage_favorite') }}">{{ 'front.block.login.favorite'|trans }}</a>｜
 				</li>
 				<li class="ec-footerNavi__link">
-					<a href="{{ url('homepage') }}mypage/favorite">お気に入り</a>｜
+					<a href="{{ url('mypage_login') }}">{{ 'front.block.login.login'|trans }}</a>｜
 				</li>
 				<li class="ec-footerNavi__link">
-					<a href="{{ url('homepage') }}mypage">ログイン</a>｜
+					<a href="{{ url('help_privacy') }}">{{ 'front.block.footer.privacy_policy'|trans }}</a>｜<br class="sp_only">
 				</li>
 				<li class="ec-footerNavi__link">
-					<a href="{{ url('help_privacy') }}">プライバシーポリシー</a>｜<br class="sp_only">
-				</li>
-				<li class="ec-footerNavi__link">
-					<a href="{{ url('help_about') }}">当サイトについて</a>｜
+					<a href="{{ url('help_about') }}">{{ 'front.block.footer.about_us'|trans }}</a>｜
 				</li>    
 				<li class="ec-footerNavi__link">
-					<a href="{{ url('help_tradelaw') }}">特定商取引法に基づく表記</a>｜
+					<a href="{{ url('help_tradelaw') }}">{{ 'front.block.footer.act_on_specified_commercial_transactions'|trans }}</a>｜
 				</li> 
 				<li class="ec-footerNavi__link">
-					<a href="{{ url('homepage') }}guide">ご利用ガイド</a>
+					<a href="{{ url('homepage') }}guide">{{ 'front.block.footer.guide'|trans }}</a>
 				</li>                    
 			</ul>
 			<div class="ec-footerSocial">

@@ -5,7 +5,7 @@
         <div class="ec-searchModal-inner">
             <div class="ec-searchModal-container">
                 <span class="modalclose"><i class="bx bx-x"></i></span>
-                <h1><i class="bx bx-search"></i>商品検索</h1>
+                <h1><i class="bx bx-search"></i>Tìm kiếm</h1>
                 <form method="get" class="searchform" action="{{ path('product_list') }}">
                     <div class="ec-headerSearch__category">
                         <div class="ec-select ec-select_search">
@@ -14,8 +14,8 @@
                     </div>
                     <div class="ec-headerSearch__keyword">
                         <div class="ec-input">
-                            {{ form_widget(form.name, {'id': null, 'attr': {'class': 'search-name', 'placeholder' : 'キーワードを入力' }} ) }}
-                            <button class="ec-headerSearch__keywordBtn" type="submit">商品検索</button>
+                            {{ form_widget(form.name, {'id': null, 'attr': {'class': 'search-name', 'placeholder' : 'common.search_keyword' }} ) }}
+                            <button class="ec-headerSearch__keywordBtn" type="submit">Tìm kiếm</button>
                         </div>
                     </div>
                 </form>

@@ -89,15 +89,24 @@ file that was distributed with this source code.
             height: 0;
         }
 
+        .ec-productRole__actions .ec-select label, .ec-productRole__actions .ec-numberInput span{
+            min-width: 85px;
+            font-size: 16px;
+            margin-right: 0;
+            display: inline-block;
+        }
+
     </style>
 {% endblock %}
 
 {% block javascript %}
     <script>
+        eccube.currencySymbol = '{{ currency_symbol() }}';
         eccube.classCategories = {{ class_categories_as_json(Product)|raw }};
 
         // 規格2に選択肢を割り当てる。
         function fnSetClassCategories(form, classcat_id2_selected) {
+            
             var $form = $(form);
             var product_id = $form.find('input[name=product_id]').val();
             var $sele1 = $form.find('select[name=classcategory_id1]');
@@ -145,7 +154,7 @@ file that was distributed with this source code.
                 {% if form.classcategory_id1 is defined %}
                 // 規格1フォームの必須チェック
                 if ($('#classcategory_id1').val() == '__unselected' || $('#classcategory_id1').val() == '') {
-                    $('#classcategory_id1')[0].setCustomValidity('{{ '項目が選択されていません'|trans }}');
+                    $('#classcategory_id1')[0].setCustomValidity('{{ 'front.product.product_class_unselected'|trans }}');
                     return true;
                 } else {
                     $('#classcategory_id1')[0].setCustomValidity('');
@@ -155,7 +164,7 @@ file that was distributed with this source code.
                 {% if form.classcategory_id2 is defined %}
                 // 規格2フォームの必須チェック
                 if ($('#classcategory_id2').val() == '__unselected' || $('#classcategory_id2').val() == '') {
-                    $('#classcategory_id2')[0].setCustomValidity('{{ '項目が選択されていません'|trans }}');
+                    $('#classcategory_id2')[0].setCustomValidity('{{ 'front.product.product_class_unselected'|trans }}');
                     return true;
                 } else {
                     $('#classcategory_id2')[0].setCustomValidity('');
@@ -164,7 +173,7 @@ file that was distributed with this source code.
 
                 // 個数フォームのチェック
                 if ($('#quantity').val() < 1) {
-                    $('#quantity')[0].setCustomValidity('{{ '1以上で入力してください。'|trans }}');
+                    $('#quantity')[0].setCustomValidity('{{ 'front.product.invalid_quantity'|trans }}');
                     return true;
                 } else {
                     $('#quantity')[0].setCustomValidity('');
@@ -198,7 +207,7 @@ file that was distributed with this source code.
                         $('.ec-headerRole__cart').html(html);
                     });
                 }).fail(function(data) {
-                    alert('{{ 'カートへの追加に失敗しました。'|trans }}');
+                    alert('{{ 'front.product.add_cart_error'|trans }}');
                 }).always(function(data) {
                     // Buttonを有効にする
                     $('.add-cart').prop('disabled', false);
@@ -257,47 +266,44 @@ file that was distributed with this source code.
                         {% if Product.hasProductClass -%}
                             <div class="ec-productRole__priceRegular">
                                 {% if Product.getPrice01Min is not null and Product.getPrice01IncTaxMin == Product.getPrice01IncTaxMax %}
-                                    <span class="ec-productRole__priceRegularPrice">{{ '通常価格'|trans }}：<span class="price01-default">{{ Product.getPrice01IncTaxMin|price }}</span></span>
-                                    <span class="ec-productRole__priceRegularTax">{{ '税込'|trans }}</span>
+                                    <span class="ec-productRole__priceRegularPrice">{{ 'front.product.normal_price'|trans }}：<span class="price01-default">{{ Product.getPrice01Min|price }} ({{ Product.getPrice01IncTaxMin|price }} <span class="ec-productRole__priceRegularTax">{{ 'common.tax_include'|trans }}</span>)</span></span>
                                 {% elseif Product.getPrice01Min is not null and Product.getPrice01Max is not null %}
-                                    <span class="ec-productRole__priceRegularPrice">{{ '通常価格'|trans }}：<span class="price01-default">{{ Product.getPrice01IncTaxMin|price }}～ {{ Product.getPrice01IncTaxMax|price }}</span></span>
-                                    <span class="ec-productRole__priceRegularTax">{{ '税込'|trans }}</span>
+                                    <span class="ec-productRole__priceRegularPrice">{{ 'front.product.normal_price'|trans }}：<span class="price01-default">{{ Product.getPrice01Min|price }}～ {{ Product.getPrice01Max|price }} ({{ Product.getPrice01IncTaxMin|price }}～ {{ Product.getPrice01IncTaxMax|price }} <span class="ec-productRole__priceRegularTax">{{ 'common.tax_include'|trans }}</span>)</span></span>
                                 {% endif %}
                             </div>
                         {% else %}
                             {% if Product.getPrice01Max is not null %}
-                                <span class="ec-productRole__priceRegularPrice">{{ '通常価格'|trans }}：{{ Product.getPrice01IncTaxMin|price }}</span>
-                                <span class="ec-productRole__priceRegularTax">{{ '税込'|trans }}</span>
+                                <span class="ec-productRole__priceRegularPrice">{{ 'front.product.normal_price'|trans }}：{{ Product.getPrice01Min|price }} ({{ Product.getPrice01IncTaxMin|price }} <span class="ec-productRole__priceRegularTax">{{ 'common.tax_include'|trans }}</span>)</span>
                             {% endif %}
                         {% endif %}
                         {# 販売価格 #}
                         <div class="ec-productRole__price">
                             {% if Product.hasProductClass -%}
                                 {% if Product.getPrice02IncTaxMin == Product.getPrice02IncTaxMax %}
-                                    <span class="ec-productRole__priceRegularPrice" style="font-weight: bold">{{ '販売価格'|trans }}</span>
+                                    <span class="ec-productRole__priceRegularPrice" style="font-weight: bold">{{ 'front.product.sale_price'|trans }}</span>
                                     <div class="ec-price">
-                                        <span class="ec-price__price price02-default">{{ Product.getPrice02IncTaxMin|price }}</span>
-                                        <span class="ec-price__tax">{{ '税込'|trans }}</span>
+                                        <span class="ec-price__price price02-default">{{ Product.getPrice02Min|price }} ({{ Product.getPrice02IncTaxMin|price }} <span class="ec-price__tax">{{ 'common.tax_include'|trans }}</span>)</span>
+                                        
                                     </div>
                                 {% else %}
-                                    <span class="ec-productRole__priceRegularPrice" style="font-weight: bold">{{ '販売価格'|trans }}</span>
+                                    <span class="ec-productRole__priceRegularPrice" style="font-weight: bold">{{ 'front.product.sale_price'|trans }}</span>
                                     <div class="ec-price">
-                                        <span class="ec-price__price price02-default">{{ Product.getPrice02IncTaxMin|price }} ～ {{ Product.getPrice02IncTaxMax|price }}</span>
-                                        <span class="ec-price__tax">{{ '税込'|trans }}</span>
+                                        <span class="ec-price__price price02-default">{{ Product.getPrice02Min|price }} ～ {{ Product.getPrice02Max|price }} ({{ Product.getPrice02IncTaxMin|price }} ～ {{ Product.getPrice02IncTaxMax|price }} <span class="ec-price__tax">{{ 'common.tax_include'|trans }}</span>)</span>
+                                        
                                     </div>
                                 {% endif %}
                             {% else %}
-                                <span class="ec-productRole__priceRegularPrice" style="font-weight: bold">{{ '販売価格'|trans }}</span>
+                                <span class="ec-productRole__priceRegularPrice" style="font-weight: bold">{{ 'front.product.sale_price'|trans }}</span>
                                 <div class="ec-price">
-                                    <span class="ec-price__price">{{ Product.getPrice02IncTaxMin|price }}</span>
-                                    <span class="ec-price__tax">{{ '税込'|trans }}</span>
+                                    <span class="ec-price__price">{{ Product.getPrice02Min|price }} ({{ Product.getPrice02IncTaxMin|price }} <span class="ec-price__tax">{{ 'common.tax_include'|trans }}</span>)</span>
+                                    
                                 </div>
                             {% endif %}
                         </div>
                         {# 商品コード #}
                         {% if Product.code_min is not empty %}
                             <div class="ec-productRole__code">
-                                {{ '商品コード'|trans }}： <span class="product-code-default">{{ Product.code_min }}{% if Product.code_min != Product.code_max %} ～ {{ Product.code_max }}{% endif %}</span>
+                                {{ 'front.product.code'|trans }}： <span class="product-code-default">{{ Product.code_min }}{% if Product.code_min != Product.code_max %} ～ {{ Product.code_max }}{% endif %}</span>
                             </div>
                         {% endif %}
 
@@ -305,30 +311,32 @@ file that was distributed with this source code.
                             <div class="ec-productRole__actions">
                                 {% if form.classcategory_id1 is defined %}
                                     <div class="ec-select">
+                                        {{ form_label(form.classcategory_id1) }}
                                         {{ form_widget(form.classcategory_id1) }}
                                         {{ form_errors(form.classcategory_id1) }}
                                     </div>
                                     {% if form.classcategory_id2 is defined %}
                                         <div class="ec-select">
+                                            {{ form_label(form.classcategory_id2) }}
                                             {{ form_widget(form.classcategory_id2) }}
                                             {{ form_errors(form.classcategory_id2) }}
                                         </div>
                                     {% endif %}
                                 {% endif %}
-                                <div class="ec-numberInput"><span>{{ '数量'|trans }}</span>
+                                <div class="ec-numberInput"><span>{{ 'common.quantity'|trans }}</span>
                                     {{ form_widget(form.quantity) }}
                                     {{ form_errors(form.quantity) }}
                                 </div>
                             </div>
                             <div class="ec-productRole__btn cart_btn">
                                 <button type="submit" class="ec-blockBtn--action add-cart">
-                                    {{ 'カートに入れる'|trans }}
+                                    {{ 'front.product.add_cart'|trans }}
                                 </button>
                             </div>
                         {% else %}
                             <div class="ec-productRole__btn cart_btn">
                                 <button type="button" class="ec-blockBtn--action zero" disabled="disabled">
-                                    {{ '品切れ中です'|trans }}
+                                    {{ 'front.product.out_of_stock'|trans }}
                                 </button>
                             </div>
                         {% endif %}
@@ -342,11 +350,11 @@ file that was distributed with this source code.
                                 <label for="ec-modal-checkbox" class="ec-modal-overlay-close"></label>
                                 <div class="ec-modal-wrap">
                                     <label for="ec-modal-checkbox" class="ec-modal-close"><span class="ec-icon"><img src="{{ asset('assets/icon/cross-dark.svg') }}" alt=""/></span></label>
-                                    <div id="ec-modal-header" class="text-center">{{ 'カートに追加しました。'|trans }}</div>
+                                    <div id="ec-modal-header" class="text-center">{{ 'front.product.add_cart_complete'|trans }}</div>
                                     <div class="ec-modal-box">
                                         <div class="ec-role">
-                                            <label for="ec-modal-checkbox" class="ec-inlineBtn--cancel">{{ 'お買い物を続ける'|trans }}</label>
-                                            <a href="{{ url('cart') }}" class="ec-inlineBtn--action">{{ 'カートへ進む'|trans }}</a>
+                                            <label for="ec-modal-checkbox" class="ec-inlineBtn--cancel">{{ 'front.product.continue'|trans }}</label>
+                                            <a href="{{ url('cart') }}" class="ec-inlineBtn--action">{{ 'common.go_to_cart'|trans }}</a>
                                         </div>
                                     </div>
                                 </div>

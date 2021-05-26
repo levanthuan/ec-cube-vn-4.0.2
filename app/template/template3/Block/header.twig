@@ -18,11 +18,11 @@
     </div>
 	<div class="ec-menuCategories_nav pc_only">
         <ul class="ec-headerNav">
-            <li><a href="{{ url('product_list') }}">全商品</a></li>
+            <li><a href="{{ url('product_list') }}">{{ 'front.product.all_products'|trans }}</a></li>
             <li>
                 <button id="btn-category_toggle"><i class="bx bx-list-ul"></i></button>
                 <div class="ec-headerCategories_wrap">
-                    <h2>カテゴリ一覧</h2>
+                    <h2>{{ 'front.block.category.list'|trans }}</h2>
                     {{ include('Block/category_nav_pc.twig') }}
                 </div>
                 
