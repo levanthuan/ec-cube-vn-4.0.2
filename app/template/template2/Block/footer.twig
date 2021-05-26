@@ -3,22 +3,22 @@
     	<div class="ec-role">
 
             <div class="ec-secHeading">
-                <span class="ec-secHeading__ja tt_contact">お問合せ</span>
+                <span class="ec-secHeading__ja tt_contact">{{ 'front.contact.title'|trans }}</span>
                 <span class="ec-secHeading__en">-contact-</span>
             </div>
 
 			<div class="wrap_info_box">
                 <div class="info_box">
-                    <p class="ttl">メールでお問合わせ</p>
-                    <p class="sq_btn small"><a href="{{ url('homepage') }}contact">お問合せはこちら <i class="bx bxs-right-arrow-alt"></i></a></p>
+                    <p class="ttl">Lên hệ qua mail</p>
+                    <p class="sq_btn small"><a href="{{ url('homepage') }}contact">Liên hệ tại đây <i class="bx bxs-right-arrow-alt"></i></a></p>
                 </div>
                 <div class="info_box">
-                    <p class="ttl">お電話でのご注文・お問合せ</p>
+                    <p class="ttl">Liên hệ - đặt hằng qua điện thoại</p>
                     <p><img src="{{ asset('assets/img/top/img_tel@2x.png') }}" /></p>
                 </div>
                 <div class="info_box">
-                    <p class="ttl">FAXでご注文の方はこちら</p>
-                    <p class="sq_btn small"><a target="_blank" href="{{ asset('assets/pdf/新サカイヤフーズさま＿FAX注文用紙.pdf') }}" class="tax">FAX注文書ダウンロード <i class="bx bxs-right-arrow-alt"></i></a></p>
+                    <p class="ttl">Đặt hàng qua FAX</p>
+                    <p class="sq_btn small"><a target="_blank" href="{{ asset('assets/pdf/新サカイヤフーズさま＿FAX注文用紙.pdf') }}" class="tax">Tải xuống đơn đặt hàng<i class="bx bxs-right-arrow-alt"></i></a></p>
                 </div>
             </div>
     	</div>
@@ -82,19 +82,19 @@
         <div class="ec-role">
 			<ul class="ec-footerNavi">
 				<li class="ec-footerNavi__link">
-					<a href="{{ url('contact') }}">お問い合わせ</a>｜
+					<a href="{{ url('contact') }}">{{ 'front.block.footer.inquiry'|trans }}</a>｜
 				</li>
 				<li class="ec-footerNavi__link">
-					<a href="{{ url('help_privacy') }}">プライバシーポリシー</a>｜<br class="sp_only">
+					<a href="{{ url('help_privacy') }}">{{ 'front.block.footer.privacy_policy'|trans }}</a>｜<br class="sp_only">
 				</li>
 				<li class="ec-footerNavi__link">
-					<a href="{{ url('help_about') }}">当サイトについて</a>｜
+					<a href="{{ url('help_about') }}">{{ 'front.block.footer.about_us'|trans }}</a>｜
 				</li>    
 				<li class="ec-footerNavi__link">
-					<a href="{{ url('help_tradelaw') }}">特定商取引法に基づく表記</a>｜
+					<a href="{{ url('help_tradelaw') }}">{{ 'front.block.footer.act_on_specified_commercial_transactions'|trans }}</a>｜
 				</li> 
 				<li class="ec-footerNavi__link">
-					<a href="{{ url('homepage') }}faq">よくある質問</a>
+					<a href="{{ url('homepage') }}faq">Home</a>
 				</li>                    
 			</ul>
 
