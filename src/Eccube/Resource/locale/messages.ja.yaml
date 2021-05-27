@@ -90,6 +90,7 @@ common.name.suffix: ' 様'
 # ブロック
 #------------------------------------------------------------------------------------
 
+front.go_to_homepage: ホームページへ
 front.block.cart.go_to_cart: カートへ進む
 front.block.cart.no_item: 現在カート内に商品はございません。
 front.block.footer.about_us: 当サイトについて
@@ -260,6 +261,7 @@ front.mypage.withdraw_complete_message__body: |
 #------------------------------------------------------------------------------------
 
 front.product.all_category: 全て
+front.product.all_categories: 全商品一覧
 front.product.search_result: 検索結果
 front.product.all_products: 全商品
 
