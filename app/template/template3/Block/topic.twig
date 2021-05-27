@@ -4,7 +4,7 @@
     <div class="ec-role">
         <div class="ec-secHeading">
             <i class='bx bxs-shopping-bags'></i>
-            <span class="ec-secHeading__ja">{{ '今週の注目商品'|trans }}</span>
+            <span class="ec-secHeading__ja">{{ 'front.block.topic.topic__en'|trans }}</span>
         </div>
         <div class="ec-topic__contents">
             {% for key,Topic in Topics %}
@@ -20,7 +20,7 @@
                     <h3 class="ec-topic__item-name">{{ Topic.title }}</h3>
                     <p class="ec-topic__item-description">{{ Topic.tag }}</p>
                     <p class="ec-topic__item-text">{{ Topic.content }}</p>
-                    <a class="ec-button" href="{{ Topic.url }}">カテゴリーへ</a>
+                    <a class="ec-button" href="{{ Topic.url }}">{{ 'front.block.category.category__en'|trans }}</a>
                 </div>
             </section>
             {% endfor %}

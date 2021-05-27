@@ -90,6 +90,7 @@ common.copyright: 'Bản quyền © '
 # Block
 #------------------------------------------------------------------------------------
 
+front.go_to_homepage: Đến trang chủ
 front.block.cart.go_to_cart: Xem giỏ hàng
 front.block.cart.no_item: Chưa có sản phẩm nào trong giỏ hàng của bạn.
 front.block.footer.about_us: Về chúng tôi
@@ -268,6 +269,7 @@ front.mypage.withdraw_complete_message__body: |
 #------------------------------------------------------------------------------------
 
 front.product.all_category: Tất cả
+front.product.all_categories: Tất cả danh mục
 front.product.search_result: Kết quả tìm kiếm
 front.product.all_products: Tất cả sản phẩm
 

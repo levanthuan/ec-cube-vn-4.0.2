@@ -86,6 +86,7 @@ common.name.suffix: ''
 # Block
 #------------------------------------------------------------------------------------
 
+front.go_to_homepage: Go homepage
 front.block.cart.go_to_cart: Proceed to Cart
 front.block.cart.no_item: Your cart is empty.
 front.block.footer.about_us: About Us
@@ -256,6 +257,7 @@ front.mypage.withdraw_complete_message__body: |
 #------------------------------------------------------------------------------------
 
 front.product.all_category: All
+front.product.all_categoríe: All Category
 front.product.search_result: Search Results
 front.product.all_products: All Products
 
