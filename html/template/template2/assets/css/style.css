@@ -2883,7 +2883,10 @@ ec-blockTopBtn {
     
     font-family: sans-serif; }
   .ec-role img {
-    max-width: 100%; }
+    max-width: 100%;
+    border: 6px solid #fff;
+    border-radius: 18px;
+  }
   .ec-role html {
     box-sizing: border-box; }
   .ec-role *,
@@ -8423,6 +8426,10 @@ body #product_review_area .review_list strong + p {
 #top-slide .slick-slide {
   opacity: 0.5;
   margin: 0 18px;
+}
+#top-slide .slick-slide img{
+  border: 6px solid #fff;
+  border-radius: 18px;
 }
 #top-slide .slick-slide.slick-current {
   opacity: 1;
