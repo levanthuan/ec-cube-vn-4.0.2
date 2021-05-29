@@ -6518,7 +6518,7 @@ background-color: #f2f5f8;
 
 
 .ec-categoryRole.white {
-	background-image: url('../img/top/img_category_bg.jpg');
+	background-image: url('../img/top/img_category_bg.png');
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: center;
@@ -6815,7 +6815,7 @@ font-size: 14px;
 @media only screen and (min-width: 768px){
 .ec-footerRole .ec-role{padding:0;flex-wrap: nowrap;}
 .ec-footerRole {padding-bottom:0;}
-.ec-footerRole .ec-role .info_box{width: 265px; margin-bottom:50px; padding: 0 40px 50px; float:left; background-color:#fff; line-height:1.8em; align-items: flex-start;text-align:left; height: 400px;}
+.ec-footerRole .ec-role .info_box{width: 265px; margin-bottom:50px; padding: 0 40px 50px; float:left; background-color:#fff; line-height:1.8em; align-items: flex-start;text-align:left; height: 480px;}
 .ec-footerRole .ec-role .info_box:not(:last-of-type) {margin-right: 20px;}
 .ec-footerRole .ec-role .info_box .ttl{ text-align:center; font-weight:bold; margin-bottom:20px; font-size:16px}
 .ec-footerRole .ec-role .info_box p{ 
